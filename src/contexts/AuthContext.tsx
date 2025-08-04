@@ -1,54 +1,60 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, AuthContextType } from '@/types';
-import { testUsers } from '@/lib/data';
-import { useKV } from '@github/spark/hooks';
+import { api } from '@/lib/api-client';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentUserId, setCurrentUserId] = useKV<string | null>('auth-user-id', null);
 
   useEffect(() => {
-    if (currentUserId) {
-      const foundUser = testUsers.find(u => u.id === currentUserId);
-      if (foundUser) {
-        setUser(foundUser);
+    // Check if user is already authenticated on app start
+    const checkAuth = async () => {
+      if (api.isAuthenticated()) {
+        try {
+          const result = await api.getCurrentUser();
+          if (result.success && result.data) {
+            setUser(result.data);
+          }
+        } catch (error) {
+          console.error('Failed to get current user:', error);
+        }
       }
-    }
-    setIsLoading(false);
-  }, [currentUserId]);
+      setIsLoading(false);
+    };
+
+    checkAuth();
+  }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
     setIsLoading(true);
     
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    // Test credentials
-    const credentials = {
-      'admin@test.com': 'admin123',
-      'user@test.com': 'user123'
-    };
-    
-    if (credentials[email as keyof typeof credentials] === password) {
-      const foundUser = testUsers.find(u => u.email === email);
-      if (foundUser) {
-        setUser(foundUser);
-        setCurrentUserId(foundUser.id);
+    try {
+      const result = await api.login(email, password);
+      if (result.success && result.data) {
+        setUser(result.data.user);
         setIsLoading(false);
         return true;
+      } else {
+        setIsLoading(false);
+        return false;
       }
+    } catch (error) {
+      console.error('Login error:', error);
+      setIsLoading(false);
+      return false;
     }
-    
-    setIsLoading(false);
-    return false;
   };
 
-  const logout = () => {
-    setUser(null);
-    setCurrentUserId(null);
+  const logout = async () => {
+    try {
+      await api.logout();
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      setUser(null);
+    }
   };
 
   return (

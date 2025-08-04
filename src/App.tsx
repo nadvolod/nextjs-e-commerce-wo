@@ -10,6 +10,7 @@ import { Login } from '@/components/Login';
 import { Checkout } from '@/components/Checkout';
 import { Orders } from '@/components/Orders';
 import { AdminDashboard } from '@/components/AdminDashboard';
+import { ApiTesting } from '@/components/ApiTesting';
 import { sampleProducts } from '@/lib/data';
 import { Product } from '@/types';
 
@@ -66,6 +67,8 @@ function App() {
         return <Orders onPageChange={handlePageChange} />;
       case 'admin':
         return <AdminDashboard onPageChange={handlePageChange} />;
+      case 'api-testing':
+        return <ApiTesting onPageChange={handlePageChange} />;
       default:
         return (
           <Home 

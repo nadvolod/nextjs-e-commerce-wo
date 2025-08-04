@@ -33,6 +33,7 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
   const navigation = [
     { name: 'Home', page: 'home' },
     { name: 'Products', page: 'products' },
+    { name: 'API Test', page: 'api-testing' },
     ...(user?.role === 'admin' ? [{ name: 'Admin', page: 'admin' }] : []),
   ];
 

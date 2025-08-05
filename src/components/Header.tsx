@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { ShoppingCart, Search, User, Menu, Package, LogOut } from '@phosphor-icons/react';
+import { ShoppingCart, Search, User, List, Package, LogOut } from '@phosphor-icons/react';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { CartSummary } from './CartSummary';
@@ -56,10 +56,14 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="md:hidden p-2 w-10 h-10 flex items-center justify-center shrink-0"
+                  className="md:hidden p-2 w-10 h-10 flex items-center justify-center shrink-0 border-border"
                   aria-label="Open mobile menu"
                 >
-                  <Menu size={20} className="text-foreground" />
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                  </svg>
                 </Button>
               </SheetTrigger>
               <SheetContent side="left">

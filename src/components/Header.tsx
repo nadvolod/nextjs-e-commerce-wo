@@ -48,62 +48,18 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
     <header className="bg-background border-b border-border sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <button
-              onClick={() => handlePageChange('home')}
-              className="text-xl font-bold text-primary hover:text-primary/80 transition-colors"
-            >
-              ShopTech
-            </button>
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {navigation.map((item) => (
-              <button
-                key={item.page}
-                onClick={() => handlePageChange(item.page)}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  currentPage === item.page
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-muted-foreground'
-                }`}
-              >
-                {item.name}
-              </button>
-            ))}
-          </nav>
-
-          {/* Search Bar */}
-          <form onSubmit={handleSearch} className="hidden md:flex items-center space-x-2 flex-1 max-w-md mx-8">
-            <div className="relative flex-1">
-              <Input
-                type="text"
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-              />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
-            </div>
-            <Button type="submit" size="sm" disabled={isSearching}>
-              {isSearching ? 'Searching...' : 'Search'}
-            </Button>
-          </form>
-
-          {/* Actions */}
-          <div className="flex items-center space-x-2 md:space-x-4">
-            {/* Mobile Menu - Show first on mobile */}
+          {/* Mobile Menu + Logo */}
+          <div className="flex items-center space-x-3">
+            {/* Mobile Menu Button - First for better accessibility */}
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="md:hidden p-2 w-10 h-10 flex items-center justify-center"
+                  className="md:hidden p-2 w-10 h-10 flex items-center justify-center shrink-0"
                   aria-label="Open mobile menu"
                 >
-                  <Menu size={20} />
+                  <Menu size={20} className="text-foreground" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left">
@@ -181,6 +137,51 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
               </SheetContent>
             </Sheet>
 
+            {/* Logo */}
+            <button
+              onClick={() => handlePageChange('home')}
+              className="text-xl font-bold text-primary hover:text-primary/80 transition-colors"
+            >
+              ShopTech
+            </button>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-8">
+            {navigation.map((item) => (
+              <button
+                key={item.page}
+                onClick={() => handlePageChange(item.page)}
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  currentPage === item.page
+                    ? 'text-primary border-b-2 border-primary'
+                    : 'text-muted-foreground'
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
+          </nav>
+
+          {/* Search Bar */}
+          <form onSubmit={handleSearch} className="hidden md:flex items-center space-x-2 flex-1 max-w-md mx-8">
+            <div className="relative flex-1">
+              <Input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+              />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
+            </div>
+            <Button type="submit" size="sm" disabled={isSearching}>
+              {isSearching ? 'Searching...' : 'Search'}
+            </Button>
+          </form>
+
+          {/* Actions */}
+          <div className="flex items-center space-x-2 md:space-x-4">
             {/* Cart */}
             <Sheet>
               <SheetTrigger asChild>
@@ -204,11 +205,11 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
               </SheetContent>
             </Sheet>
 
-            {/* User Menu */}
+            {/* User Menu - Hidden on mobile, shown in hamburger menu instead */}
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="hidden md:flex">
                     <User size={20} />
                     <span className="hidden sm:inline ml-2">{user.name}</span>
                   </Button>
@@ -225,7 +226,12 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button onClick={() => handlePageChange('login')} variant="outline" size="sm">
+              <Button 
+                onClick={() => handlePageChange('login')} 
+                variant="outline" 
+                size="sm"
+                className="hidden md:flex"
+              >
                 <User size={20} />
                 <span className="hidden sm:inline ml-2">Login</span>
               </Button>

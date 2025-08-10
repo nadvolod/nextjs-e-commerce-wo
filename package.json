@@ -10,11 +10,25 @@
         "lint": "eslint .",
         "optimize": "vite optimize",
         "preview": "vite preview",
-        "test:e2e": "playwright test",
-        "test:e2e:ui": "playwright test --ui",
-        "test:e2e:headed": "playwright test --headed",
-        "test:e2e:browser": "playwright test tests/e2e/browser.spec.ts",
-        "test:e2e:api": "playwright test tests/e2e/api.spec.ts"
+  // ... elsewhere in package.json ...
+
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    // …other devDependencies…
+  },
+
+  "scripts": {
+    "preview": "vite preview",
+    "test:e2e": "playwright test",
+    "postinstall": "playwright install --with-deps",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:browser": "playwright test tests/e2e/browser.spec.ts",
+    "test:e2e:api": "playwright test tests/e2e/api.spec.ts"
+    // …other scripts…
+  }
+
+  // ... remainder of package.json …
     },
     "dependencies": {
         "@heroicons/react": "^2.2.0",

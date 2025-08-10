@@ -25,26 +25,11 @@ Copilot should create:
 - `playwright.config.ts` - Basic configuration
 - Updated `package.json` with test scripts
 
-#### Step 3: Run the Tests
+### What do you think of these tests?
 
-```bash
-# Install Playwright browsers
-npx playwright install
+### Exercise🏋️‍♂️
 
-# Run all tests
-npm run test:e2e
-
-# Run in headed mode for debugging
-npm run test:e2e -- --headed
-```
-
-#### Step 4: Add Test IDs (if needed)
-
-If tests fail due to missing selectors, ask Copilot:
-
-```
-Add data-testid attributes to these components: Header, ProductCard, Cart button
-```
+Create an AI Prompt and guidelines that will fix these tests.
 
 ### Key Testing Concepts
 

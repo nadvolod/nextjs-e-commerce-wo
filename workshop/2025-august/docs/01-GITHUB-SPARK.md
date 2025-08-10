@@ -26,8 +26,8 @@ GitHub Spark helps you transform your ideas into full-stack intelligent apps and
 3. Watch GitHub AI do it's magic
 4. Push the code into a repository
 5. Clone the repo
-6. `npm run dev` to start the app locally
-
+6. `cd <your-repo>` and run `npm install`
+7. `npm run dev` to start the app locally
 ## What's Next?
 
 ❗TODO

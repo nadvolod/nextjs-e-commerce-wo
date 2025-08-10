@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { ProductCard } from '@/components/ProductCard';
 import { sampleProducts, categories } from '@/lib/data';
-import { Search, Filter } from '@phosphor-icons/react';
+import { MagnifyingGlass, FunnelSimple } from '@phosphor-icons/react';
 
 interface ProductListingProps {
   searchQuery: string;
@@ -83,14 +83,14 @@ export function ProductListing({ searchQuery, onProductSelect }: ProductListingP
                 onChange={(e) => setLocalSearchQuery(e.target.value)}
                 className="pl-10"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
+              <MagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
             </div>
           </form>
 
           {/* Category Filter */}
           <Select value={selectedCategory} onValueChange={setSelectedCategory}>
             <SelectTrigger>
-              <Filter size={16} className="mr-2" />
+              <FunnelSimple size={16} className="mr-2" />
               <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>

@@ -11,7 +11,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { sampleProducts, formatCurrency, generateOrderId } from '@/lib/data';
 import { Order } from '@/types';
-import { useKV } from '@github/spark/hooks';
+import { useKV } from '@/hooks/useKV';
 import { toast } from 'sonner';
 
 interface CheckoutProps {

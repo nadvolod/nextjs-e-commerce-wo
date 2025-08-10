@@ -1,0 +1,62 @@
+# Module 3: End-to-End Testing Strategies
+
+## Modern E2E Testing Approach
+
+End-to-end testing has evolved significantly with new tools, strategies, and AI integration. This module covers AI-supported E2E testing that ensure your e-commerce application works flawlessly from the user's perspective.
+
+## Testing
+
+In this module, you'll use GitHub Copilot to create automated tests for the e-commerce application. We'll focus on essential test coverage with minimal complexity.
+
+### Exercise: Create Playwright Test Suite with AI
+
+#### Step 1: Use the AI Prompt
+
+1. Open GitHub Copilot Chat in VS Code
+2. Use the prompt from [`../ai-prompts/create-playwright-tests.md`](../ai-prompts/create-playwright-tests.md)
+3. Let Copilot generate the complete test suite
+
+#### Step 2: Review Generated Tests
+
+Copilot should create:
+
+- `tests/e2e/browser.spec.ts` - Critical user flows
+- `tests/e2e/api.spec.ts` - Core API endpoint tests
+- `playwright.config.ts` - Basic configuration
+- Updated `package.json` with test scripts
+
+#### Step 3: Run the Tests
+
+```bash
+# Install Playwright browsers
+npx playwright install
+
+# Run all tests
+npm run test:e2e
+
+# Run in headed mode for debugging
+npm run test:e2e -- --headed
+```
+
+#### Step 4: Add Test IDs (if needed)
+
+If tests fail due to missing selectors, ask Copilot:
+
+```
+Add data-testid attributes to these components: Header, ProductCard, Cart button
+```
+
+### Key Testing Concepts
+
+- **Critical Path Focus**: Test only the most important user journeys
+- **AI-Assisted Creation**: Let Copilot handle boilerplate and configuration
+- **Simple Assertions**: Verify key functionality without over-testing
+- **Fast Feedback**: Keep tests quick and reliable
+
+## What's Next?
+
+Now that we have comprehensive E2E testing in place, the next module will cover integrating these tests into modern CI/CD pipelines with intelligent automation and deployment strategies.
+
+---
+
+**Continue to:** [04-CI-CD-PIPELINE.md](./04-CI-CD-PIPELINE.md)

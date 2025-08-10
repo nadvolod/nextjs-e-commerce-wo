@@ -31,3 +31,5 @@ packages
 .devcontainer/
 
 .spark-workbench-id
+test-results/
+playwright-report/

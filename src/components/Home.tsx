@@ -140,7 +140,7 @@ export function Home({ onPageChange, onProductSelect }: HomeProps) {
       </section>
 
       {/* Featured Products Section */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-background" data-testid="featured-products-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -159,7 +159,7 @@ export function Home({ onPageChange, onProductSelect }: HomeProps) {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8" data-testid="products-grid">
             {featuredProducts.map((product) => (
               <ProductCard
                 key={product.id}

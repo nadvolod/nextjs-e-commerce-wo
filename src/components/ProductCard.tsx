@@ -18,12 +18,13 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
   const isLowStock = product.stock > 0 && product.stock <= 5;
 
   return (
-    <Card className="h-full flex flex-col group hover:shadow-lg transition-shadow duration-200">
+    <Card className="h-full flex flex-col group hover:shadow-lg transition-shadow duration-200" data-testid={`product-card-${product.id}`}>
       <div className="relative overflow-hidden">
         <img
           src={product.image}
           alt={product.name}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-200"
+          data-testid={`product-image-${product.id}`}
         />
         {isOutOfStock && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -81,6 +82,7 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
           onClick={() => addToCart(product.id)}
           disabled={isOutOfStock}
           className="flex-1"
+          data-testid={`add-to-cart-${product.id}`}
         >
           <ShoppingCart size={16} className="mr-2" />
           {isOutOfStock ? 'Unavailable' : 'Add to Cart'}

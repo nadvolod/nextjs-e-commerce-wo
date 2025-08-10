@@ -9,7 +9,12 @@
         "build": "tsc -b --noCheck && vite build",
         "lint": "eslint .",
         "optimize": "vite optimize",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "test:e2e": "playwright test",
+        "test:e2e:ui": "playwright test --ui",
+        "test:e2e:headed": "playwright test --headed",
+        "test:e2e:browser": "playwright test tests/e2e/browser.spec.ts",
+        "test:e2e:api": "playwright test tests/e2e/api.spec.ts"
     },
     "dependencies": {
         "@heroicons/react": "^2.2.0",

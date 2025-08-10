@@ -23,7 +23,9 @@ This version of the workshop focuses on cutting-edge testing practices for moder
 
 ### 📚 Documentation (`docs/`)
 
-1. **01-SPARK-AI.md** - Introduction to AI-powered testing
+1. **01-GITHUB-SPARK.md** - Introduction to AI-powered testing
+
+**Ready to get started?** 🚀 Begin with [01-GITHUB-SPARK.md](./docs/01-GITHUB-SPARK.md)
 2. **02-E2E-TESTS.md** - End-to-end testing strategies
 3. **03-CI-CD-PIPELINE.md** - Modern CI/CD practices
 4. **04-ADVANCED-TESTING.md** - Performance, accessibility, and advanced topics

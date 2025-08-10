@@ -34,4 +34,4 @@ GitHub Spark helps you transform your ideas into full-stack intelligent apps and
 
 ---
 
-**Continue to:** [02-E2E-TESTS.md](./02-E2E-TESTS.md)
+**Continue to:** [02-VSCODE-COPILOT.md](./02-VSCODE-COPILOT.md)

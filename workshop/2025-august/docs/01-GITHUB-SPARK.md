@@ -16,7 +16,7 @@ GitHub Spark helps you transform your ideas into full-stack intelligent apps and
 ## Requirements
 
 - [GitHub account](https://github.com/)
-- [Register for GitHub Pro+ for $39/mo](bit.ly/gh-spark-reg://bit.ly/gh-spark-reg)
+- [Register for GitHub Pro+ for $39/mo](https://bit.ly/gh-spark-reg)
   - 🟡 Not mandatory, if you don't want to pay, you can just watch
 
 ## Exercise 1

@@ -22,24 +22,30 @@ This version of the workshop focuses on cutting-edge testing practices for moder
 ## Workshop Structure
 
 ### 📚 Documentation (`docs/`)
-1. **01-SPARK-AI.md** - Introduction to AI-powered testing
+
+1. **01-GITHUB-SPARK.md** - Introduction to AI-powered testing
+
+**Ready to get started?** 🚀 Begin with [01-GITHUB-SPARK.md](./docs/01-GITHUB-SPARK.md)
 2. **02-E2E-TESTS.md** - End-to-end testing strategies
 3. **03-CI-CD-PIPELINE.md** - Modern CI/CD practices
 4. **04-ADVANCED-TESTING.md** - Performance, accessibility, and advanced topics
 5. **05-CONCLUSIONS.md** - Wrap-up and next steps
 
 ### 🛠️ Hands-on Practice (`exercises/`)
+
 - **exercise-1/** - Setting up AI-powered testing
 - **exercise-2/** - Implementing comprehensive test suites
 - **solutions/** - Reference implementations
 
 ### 📁 Resources (`assets/`)
+
 - **images/** - Diagrams, screenshots, and visual aids
 - **templates/** - Starter files and boilerplates
 
 ## Getting Started
 
 1. **Setup Environment**
+
    ```bash
    npm install
    npm run setup-workshop
@@ -73,6 +79,7 @@ This version of the workshop focuses on cutting-edge testing practices for moder
 ## Next Steps
 
 After completing this workshop, you'll be ready to:
+
 - implement AI-powered testing in your projects
 - Set up robust CI/CD pipelines
 - Apply advanced testing strategies

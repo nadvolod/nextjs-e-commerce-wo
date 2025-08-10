@@ -14,27 +14,53 @@ This version of the workshop focuses on cutting-edge testing practices for moder
 
 ## Prerequisites
 
-- Basic knowledge of JavaScript/TypeScript
-- Familiarity with testing concepts
-- Node.js 18+ installed
-- Git basics
+- **GitHub account** - Required for GitHub Spark and Copilot access
+- **Basic knowledge of JavaScript/TypeScript** - Understanding of modern JS/TS syntax
+- **Familiarity with testing concepts** - Basic understanding of testing principles
+- **Node.js 18+ installed** - Latest LTS version recommended
+- **Git basics** - Command line git knowledge
+- **VSCode with Essential Extensions** - Install the following extensions:
+
+  ```bash
+  # Core development extensions
+  - TypeScript and JavaScript Language Features (built-in)
+  - ESLint
+  - Prettier - Code formatter
+  - Auto Rename Tag
+  - Bracket Pair Colorizer
+
+  # React/Next.js specific
+  - ES7+ React/Redux/React-Native snippets
+  - Next.js snippets
+
+  # Tailwind CSS
+  - Tailwind CSS IntelliSense
+
+  # Testing
+  - Jest
+  - Playwright Test for VSCode
+
+  # AI Assistance
+  - GitHub Copilot
+  - GitHub Copilot Chat
+  ```
 
 ## Workshop Structure
 
 ### 📚 Documentation (`docs/`)
 
-1. **01-GITHUB-SPARK.md** - Introduction to AI-powered testing
-
-**Ready to get started?** 🚀 Begin with [01-GITHUB-SPARK.md](./docs/01-GITHUB-SPARK.md)
-2. **02-E2E-TESTS.md** - End-to-end testing strategies
-3. **03-CI-CD-PIPELINE.md** - Modern CI/CD practices
-4. **04-ADVANCED-TESTING.md** - Performance, accessibility, and advanced topics
-5. **05-CONCLUSIONS.md** - Wrap-up and next steps
+1. **01-GITHUB-SPARK.md** - Introduction to AI-powered development
+2. **02-VSCODE-COPILOT.md** - VSCode & GitHub Copilot setup
+3. **03-E2E-TESTS.md** - End-to-end testing strategies
+4. **04-CI-CD-PIPELINE.md** - Modern CI/CD practices
+5. **05-ADVANCED-TESTING.md** - Performance, accessibility, and advanced topics
+6. **06-CONCLUSIONS.md** - Wrap-up and next steps
 
 ### 🛠️ Hands-on Practice (`exercises/`)
 
-- **exercise-1/** - Setting up AI-powered testing
-- **exercise-2/** - Implementing comprehensive test suites
+- **exercise-1/** - GitHub Spark application creation
+- **exercise-2/** - VSCode & Copilot setup and configuration
+- **exercise-3/** - End-to-end testing implementation
 - **solutions/** - Reference implementations
 
 ### 📁 Resources (`assets/`)
@@ -87,4 +113,4 @@ After completing this workshop, you'll be ready to:
 
 ---
 
-**Ready to get started?** 🚀 Begin with [01-SPARK-AI.md](./docs/01-SPARK-AI.md)
+**Ready to get started?** 🚀 Begin with [01-GITHUB-SPARK.md](./docs/01-GITHUB-SPARK.md)

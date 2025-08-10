@@ -1,7 +1,8 @@
 import { createContext, useContext, ReactNode } from 'react';
 import { CartItem, Cart } from '@/types';
 import { sampleProducts, calculateCartTotals } from '@/lib/data';
-import { useKV } from '@github/spark/hooks';
+// Replace Spark useKV with local implementation
+import { useKV } from '@/hooks/useKV';
 import { toast } from 'sonner';
 
 interface CartContextType {

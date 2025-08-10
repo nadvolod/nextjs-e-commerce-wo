@@ -22,12 +22,12 @@ GitHub Spark helps you transform your ideas into full-stack intelligent apps and
 ## Exercise 1
 
 1. Go to https://github.com/spark
-2. Paste [the e-commerce prompt](workshop/2025-august/assets/ai-prompts/create-web-app.md) into the chatbox
+2. Paste [the e-commerce prompt](../assets/ai-prompts/create-web-app.md) into the chatbox
 3. Watch GitHub AI do it's magic
 4. Push the code into a repository
 5. Clone the repo
-6. `npm run dev` to start the app locally
-
+6. `cd <your-repo>` and run `npm install`
+7. `npm run dev` to start the app locally
 ## What's Next?
 
 ❗TODO

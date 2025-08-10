@@ -6,7 +6,7 @@ import { Package, Calendar, CreditCard } from '@phosphor-icons/react';
 import { useAuth } from '@/contexts/AuthContext';
 import { sampleProducts, formatCurrency } from '@/lib/data';
 import { Order } from '@/types';
-import { useKV } from '@github/spark/hooks';
+import { useKV } from '@/hooks/useKV';
 
 interface OrdersProps {
   onPageChange: (page: string) => void;

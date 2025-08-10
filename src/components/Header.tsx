@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { ShoppingCart, Search, User, List, Package, LogOut } from '@phosphor-icons/react';
+import { ShoppingCart, MagnifyingGlass, User, Package, SignOut } from '@phosphor-icons/react';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { CartSummary } from './CartSummary';
@@ -81,7 +81,7 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="pl-10"
                       />
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
+                      <MagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
                     </div>
                     <Button type="submit" size="sm" disabled={isSearching}>
                       Search
@@ -122,7 +122,7 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
                         }}
                         className="flex items-center w-full text-left py-3 px-4 rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground text-destructive"
                       >
-                        <LogOut className="mr-2" size={16} />
+                        <SignOut className="mr-2" size={16} />
                         Logout
                       </button>
                     </div>
@@ -177,7 +177,7 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
+              <MagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
             </div>
             <Button type="submit" size="sm" disabled={isSearching}>
               {isSearching ? 'Searching...' : 'Search'}
@@ -224,7 +224,7 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
                     My Orders
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={logout}>
-                    <LogOut className="mr-2" size={16} />
+                    <SignOut className="mr-2" size={16} />
                     Logout
                   </DropdownMenuItem>
                 </DropdownMenuContent>

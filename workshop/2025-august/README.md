@@ -51,10 +51,9 @@ This version of the workshop focuses on cutting-edge testing practices for moder
 
 1. **01-GITHUB-SPARK.md** - Introduction to AI-powered development
 2. **02-VSCODE-COPILOT.md** - VSCode & GitHub Copilot setup
-3. **03-E2E-TESTS.md** - End-to-end testing strategies
+3. **03-TESTS.md** - End-to-end testing strategies
 4. **04-CI-CD-PIPELINE.md** - Modern CI/CD practices
-5. **05-ADVANCED-TESTING.md** - Performance, accessibility, and advanced topics
-6. **06-CONCLUSIONS.md** - Wrap-up and next steps
+5. **06-CONCLUSIONS.md** - Wrap-up and next steps
 
 ### 🛠️ Hands-on Practice (`exercises/`)
 
@@ -78,13 +77,13 @@ This version of the workshop focuses on cutting-edge testing practices for moder
    ```
 
 2. **Follow the Modules**
-   Start with `docs/01-SPARK-AI.md` and progress through each section
+   Start with `../2025-august/docs/01-GITHUB-SPARK.md` and progress through each section
 
 3. **Complete Exercises**
    Work through practical exercises to reinforce learning
 
 4. **Reference Solutions**
-   Check `exercises/solutions/` when you need guidance
+   Check `../2025-august/assets/` for templates and resources when you need guidance
 
 ## Time Commitment
 
@@ -113,4 +112,4 @@ After completing this workshop, you'll be ready to:
 
 ---
 
-**Ready to get started?** 🚀 Begin with [01-GITHUB-SPARK.md](./docs/01-GITHUB-SPARK.md)
+**Ready to get started?** 🚀 Begin with [01-GITHUB-SPARK.md](../2025-august/docs/01-GITHUB-SPARK.md)

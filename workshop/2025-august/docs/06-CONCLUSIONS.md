@@ -215,14 +215,13 @@ The future of software development is collaborative - between humans and AI, bet
 ### Workshop Materials
 
 - [Complete workshop repository](https://github.com/workshop/nextjs-e-commerce-wo)
-- [Exercise solutions and examples](./exercises/solutions/)
-- [Template files and configurations](./assets/templates/)
+- [Exercise solutions and examples](../exercises/solutions/)
+- [Template files and configurations](../assets/templates/)
 
 ### Quick Reference
 
-- [GitHub Copilot cheat sheet](./assets/copilot-cheat-sheet.md)
-- [Testing strategy decision tree](./assets/testing-decision-tree.md)
-- [CI/CD pipeline templates](./assets/pipeline-templates/)
+- [AI Prompts and Templates](../assets/ai-prompts/)
+- [Workshop Assets](../assets/)
 
 ### Contact Information
 

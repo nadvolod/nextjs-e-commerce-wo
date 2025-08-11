@@ -13,7 +13,7 @@ In this module, you'll use GitHub Copilot to create automated tests for the e-co
 #### Step 1: Use the AI Prompt
 
 1. Open GitHub Copilot Chat in VS Code
-2. Use the prompt from [`../ai-prompts/create-playwright-tests.md`](../ai-prompts/create-playwright-tests.md)
+2. Use the prompt from [`../assets/ai-prompts/create-playwright-tests.md`](../assets/ai-prompts/create-playwright-tests.md)
 3. Let Copilot generate the complete test suite
 
 #### Step 2: Review Generated Tests

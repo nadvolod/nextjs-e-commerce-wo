@@ -48,7 +48,7 @@ In this workshop you will learn the latest and greatest AI tools and techniques 
 
 ## Your Instructor: Nikolay Advolodkin
 
-<img src="./graphics/NikolayAndMia.JPG" alt="me" width="200"/>
+<!-- Profile photo will be added later - see graphics/README.md -->
 
 - 🔭 I'm the Chief Engineer at [Ultimate QA](https://ultimateqa.com/consulting)
 - 💬 Ask me about environmentalism, veganism, test automation, and fitness

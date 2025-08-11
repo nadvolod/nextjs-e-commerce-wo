@@ -9,6 +9,7 @@ CONTEXT:
 - Next.js e-commerce app (likely running on localhost:5173)
 - Focus on critical user paths only
 - Time-constrained implementation
+- Always review this file after every iteration. Always re-run tests after every update.
 
 TESTS NEEDED:
 1. Browser Tests (3 essential flows):
@@ -43,6 +44,8 @@ Test Execution
 - Only create automated tests on chromium
 - Don't use a browser for API testing
 - Run tests in parallel
+- Console.log statements should not be used in test files as they create noise in test output.
+- Always run `npx playwright test --reporter=none` when running `npx playwright test`
 
 Please generate the complete test suite with configuration.
 ```

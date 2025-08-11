@@ -1,70 +1,42 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('E-commerce API Tests', () => {
+// Simple in-memory KV for Node test environment to satisfy api-backend's spark.kv usage
+const kvStore = new Map<string, any>();
+const sparkKV = {
+  get: async (key: string) => (kvStore.has(key) ? kvStore.get(key) : null),
+  set: async (key: string, value: any) => { kvStore.set(key, value); },
+  delete: async (key: string) => { kvStore.delete(key); },
+  keys: async () => Array.from(kvStore.keys()),
+};
 
-  test('GET /api/products - returns product list', async ({ page }) => {
-    // Since the in-memory API client has initialization issues in tests,
-    // we'll test that the products are loaded and displayed on the page
-    await page.goto('/');
-    
-    // Wait for products to load
-    await page.waitForSelector('[data-testid^="product-card-"]', { timeout: 10000 });
-    
-    // Verify products are displayed (which means the API client worked)
-    const productCards = await page.locator('[data-testid^="product-card-"]').count();
-    expect(productCards).toBeGreaterThan(0);
-    
-    // Simple validation - just ensure we have product cards
-    // This proves the API is working since products are being rendered
-    console.log('Products loaded successfully:', productCards, 'product cards found');
-    
-    // Additional check - make sure product cards have content
-    const firstProductCard = page.locator('[data-testid^="product-card-"]').first();
-    await expect(firstProductCard).toBeVisible();
-    
-    // Success! Products are loading, which means our API client is working
-    expect(productCards).toBeGreaterThan(0);
+// @ts-ignore define global spark for api-backend
+(globalThis as any).spark = { kv: sparkKV };
+
+test.describe('E-commerce API Tests (without browser)', () => {
+  test('GET /api/products - returns product list', async () => {
+    const { default: ApiClient } = await import('../../src/lib/api-client');
+    const res = await ApiClient.getProducts();
+    expect(res.success).toBeTruthy();
+    expect(Array.isArray(res.data)).toBeTruthy();
+    expect((res.data || []).length).toBeGreaterThan(0);
   });
 
-  test('POST /api/cart - adds item to cart', async ({ page }) => {
-    await page.goto('/');
-    
-    // First login using the UI
-    await page.click('text=Login');
-    await page.waitForSelector('text=Use This Account');
-    await page.locator('text=Use This Account').last().click();
-    await page.click('button[type="submit"]');
-    await page.waitForURL('**/');
-    
-    // Add item to cart using the UI
-    await page.waitForSelector('[data-testid^="add-to-cart-"]');
-    const addToCartButton = page.locator('[data-testid^="add-to-cart-"]').first();
-    await addToCartButton.click();
-    
-    // Check if cart icon shows item count
-    const cartButton = page.locator('[data-testid="cart-button"]');
-    await expect(cartButton).toBeVisible();
-    
-    // Click cart to verify item was added
-    await cartButton.click();
-    
-    // Check if cart has items
-    const cartItems = await page.evaluate(() => {
-      // Look for various indicators that item was added to cart
-      const cartContent = document.querySelector('[role="dialog"], [class*="sheet"]');
-      if (cartContent) {
-        const text = cartContent.textContent || '';
-        return text.includes('$') || text.includes('Proceed') || text.includes('Total') || text.includes('Checkout');
-      }
-      // Also check if cart button shows a badge/count
-      const cartButton = document.querySelector('[data-testid="cart-button"]');
-      if (cartButton) {
-        return cartButton.textContent?.includes('1') || cartButton.querySelector('[class*="badge"]') !== null;
-      }
-      return false;
-    });
-    
-    expect(cartItems).toBeTruthy();
-  });
+  test('POST /api/cart - adds item to cart', async () => {
+    const { default: ApiClient, api } = await import('../../src/lib/api-client');
+    await api.resetData();
 
+    // Login as a regular user
+    const login = await ApiClient.login('user@test.com', 'user123');
+    expect(login.success).toBeTruthy();
+
+    // Add a known product (id "1") to cart
+    const add = await ApiClient.addToCart('1', 1);
+    expect(add.success).toBeTruthy();
+
+    // Read back cart
+    const cart = await ApiClient.getCart();
+    expect(cart.success).toBeTruthy();
+    expect(cart.data?.items?.length || 0).toBeGreaterThan(0);
+    expect(cart.data?.items?.[0].productId).toBe('1');
+  });
 });

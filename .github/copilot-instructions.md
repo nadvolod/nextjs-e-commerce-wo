@@ -16,6 +16,24 @@ This is a React e-commerce application built with Vite, TypeScript, and modern w
 - **UI Components**: Radix UI with custom components
 - **Package Manager**: npm
 
+## Coding Standards
+
+- Use TypeScript for all new code
+- Follow React 19+ patterns with modern hooks
+- Prefer functional components with hooks
+- Use Tailwind CSS for styling
+- Implement proper error handling
+- Focus on component composition and reusability
+
+## AI Assistance Guidelines
+
+- Suggest modern React patterns
+- Prioritize accessibility
+- Focus on performance optimization
+- Include proper TypeScript types
+- Generate meaningful test cases
+- Follow the project's existing architecture patterns
+
 ## Working Effectively
 
 ### Bootstrap and Build the Repository
@@ -54,6 +72,14 @@ This is a React e-commerce application built with Vite, TypeScript, and modern w
 npm run lint  # FAILS - no eslint.config.js file
 ```
 **Status**: Linting is broken and needs manual configuration setup.
+
+### Testing Preferences
+
+- Use Playwright for E2E tests
+- Jest for unit tests when needed
+- Write tests alongside features
+- Don't write more tests than necessary to cover critical paths. Keep tests to a minimum to ensure maintainability.
+- Focus on testing critical user paths and business logic
 
 ### Validation Scenarios
 

@@ -88,7 +88,8 @@ test.describe('E-commerce Browser Tests', () => {
     await page.waitForSelector('[data-testid^="add-to-cart-"]');
     const firstAddToCartBtn = page.locator('[data-testid^="add-to-cart-"]').first();
     await firstAddToCartBtn.click();
-    await page.waitForTimeout(1000);
+    // Wait for cart UI to update (e.g., "Proceed to Checkout" button appears)
+    await expect(page.locator('text=Proceed to Checkout')).toBeVisible();
     
     // Step 3: Try to access checkout by navigating to it
     // Since the cart drawer might not work reliably, let's just verify

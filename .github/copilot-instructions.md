@@ -81,6 +81,19 @@ npm run lint  # FAILS - no eslint.config.js file
 - Don't write more tests than necessary to cover critical paths. Keep tests to a minimum to ensure maintainability.
 - Focus on testing critical user paths and business logic
 
+### Test Execution
+
+- Run tests in the background using terminal commands
+- Analyze test results programmatically and provide summary of outcomes
+- Only show test failures or issues that need attention
+- Run tests automatically after creation
+- Keep iterating until tests are working
+- Only create automated tests on chromium
+- Don't use a browser for API testing
+- Run tests in parallel
+- Console.log statements should not be used in test files as they create noise in test output.
+- Always run `npx playwright test --reporter=none` on localhost. Use a more robust reporter in CI
+
 ### Validation Scenarios
 
 **ALWAYS** test the following scenarios after making changes:

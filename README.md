@@ -27,12 +27,6 @@ In this workshop you will learn the latest and greatest AI tools and techniques 
 6. [Copilot coding agent](https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/coding-agent/coding-agent)
 7. Next.js
 
-## Workshop Versions
-
-| Version                                | Date     | Key Updates                                | Status     |
-| -------------------------------------- | -------- | ------------------------------------------ | ---------- |
-| [August 2025](./workshop/2025-august/) | Aug 2025 | GitHub Spark AI, Advanced Copilot features | 🟢 Current |
-
 ## Quick Start
 
 1. **Fork this repository**
@@ -59,6 +53,12 @@ In this workshop you will learn the latest and greatest AI tools and techniques 
   - [Youtube](https://www.youtube.com/ultimateqa?sub_confirmation=1)
   - [LinkedIn](https://www.linkedin.com/in/nikolayadvolodkin/)
   - [Twitter](https://twitter.com/intent/follow?screen_name=nikolay_a00)
+
+## Workshop Versions
+
+| Version                                | Date     | Key Updates                                | Status     |
+| -------------------------------------- | -------- | ------------------------------------------ | ---------- |
+| [August 2025](./workshop/2025-august/) | Aug 2025 | GitHub Spark AI, Advanced Copilot features | 🟢 Current |
 
 ## Contributing
 

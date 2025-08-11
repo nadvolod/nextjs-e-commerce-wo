@@ -1,115 +1,51 @@
-# E-Commerce Testing Workshop - August 2025
+# AI For Good Workshop
 
-## Welcome to the Latest Workshop Iteration
+AI For Good accelerates engineering careers by turning AI complexity into competitive advantage.
 
-This version of the workshop focuses on cutting-edge testing practices for modern e-commerce applications, featuring AI-powered testing tools and advanced automation strategies.
+In this workshop you will learn the latest and greatest AI tools and techniques to elevate your competitive advantage in the marketplace.
 
-## What's New in August 2025
+## 🧠You will learn to
 
-- **SPARK AI Integration** - Leverage AI for intelligent test generation and maintenance
-- **Advanced E2E Strategies** - Modern approaches to end-to-end testing
-- **Enhanced CI/CD** - Latest pipeline practices and tools
-- **Performance Focus** - Comprehensive performance and accessibility testing
-- **Real-world Examples** - Updated with current industry practices
+- Build a web application using GitHub Spark AI
+- Deploy the web app using GitHub
+- Create a CI/CD pipeline using GitHub Copilot
+- Create automated tests using GitHub Copilot
+- Perform PR reviews using AI
+- Integrate everything together
 
-## Prerequisites
+## 🔧Technologies you will use
 
-- **GitHub account** - Required for GitHub Spark and Copilot access
-- **Basic knowledge of JavaScript/TypeScript** - Understanding of modern JS/TS syntax
-- **Familiarity with testing concepts** - Basic understanding of testing principles
-- **Node.js 18+ installed** - Latest LTS version recommended
-- **Git basics** - Command line git knowledge
-- **VSCode with Essential Extensions** - Install the following extensions:
+1. GitHub Spark AI
+2. GitHub Actions
+3. VS Code with Codespaces
+4. GitHub Copilot
+5. Playwright
+6. [Copilot coding agent](https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/coding-agent/coding-agent)
+7. Next.js
 
-  ```bash
-  # Core development extensions
-  - TypeScript and JavaScript Language Features (built-in)
-  - ESLint
-  - Prettier - Code formatter
-  - Auto Rename Tag
-  - Bracket Pair Colorizer
+## Quick Start
 
-  # React/Next.js specific
-  - ES7+ React/Redux/React-Native snippets
-  - Next.js snippets
+1. **Fork this repository**
+2. **Open in Codespaces** or clone locally
+3. **Navigate to current workshop**: `cd workshop/current`
+4. **Follow the setup instructions** in the workshop README
 
-  # Tailwind CSS
-  - Tailwind CSS IntelliSense
+## Requirements
 
-  # Testing
-  - Jest
-  - Playwright Test for VSCode
+- GitHub account with Copilot access
+- Basic JavaScript/TypeScript knowledge
+- Browser (Chrome/Edge recommended for Codespaces)
 
-  # AI Assistance
-  - GitHub Copilot
-  - GitHub Copilot Chat
-  ```
+## Your Instructor: Nikolay Advolodkin
 
-## Workshop Structure
+<img src="./graphics/NikolayAndMia.JPG" alt="me" width="200"/>
 
-### 📚 Documentation (`docs/`)
-
-1. **01-GITHUB-SPARK.md** - Introduction to AI-powered development
-2. **02-VSCODE-COPILOT.md** - VSCode & GitHub Copilot setup
-3. **03-TESTS.md** - End-to-end testing strategies
-4. **04-CI-CD-PIPELINE.md** - Modern CI/CD practices
-5. **06-CONCLUSIONS.md** - Wrap-up and next steps
-
-### 🛠️ Hands-on Practice (`exercises/`)
-
-- **exercise-1/** - GitHub Spark application creation
-- **exercise-2/** - VSCode & Copilot setup and configuration
-- **exercise-3/** - End-to-end testing implementation
-- **solutions/** - Reference implementations
-
-### 📁 Resources (`assets/`)
-
-- **images/** - Diagrams, screenshots, and visual aids
-- **templates/** - Starter files and boilerplates
-
-## Getting Started
-
-1. **Setup Environment**
-
-   ```bash
-   npm install
-   npm run setup-workshop
-   ```
-
-2. **Follow the Modules**
-   Start with `../2025-august/docs/01-GITHUB-SPARK.md` and progress through each section
-
-3. **Complete Exercises**
-   Work through practical exercises to reinforce learning
-
-4. **Reference Solutions**
-   Check `../2025-august/assets/` for templates and resources when you need guidance
-
-## Time Commitment
-
-- **Total Duration:** 6-8 hours
-- **Module 1:** 1.5 hours (SPARK AI)
-- **Module 2:** 2 hours (E2E Tests)
-- **Module 3:** 1.5 hours (CI/CD)
-- **Module 4:** 2 hours (Advanced Testing)
-- **Module 5:** 30 minutes (Conclusions)
-
-## Support
-
-- 📖 Check the documentation first
-- 💬 Join our workshop Discord
-- 🐛 Report issues on GitHub
-- 📧 Contact instructors for additional help
-
-## Next Steps
-
-After completing this workshop, you'll be ready to:
-
-- implement AI-powered testing in your projects
-- Set up robust CI/CD pipelines
-- Apply advanced testing strategies
-- Lead testing initiatives in your organization
-
----
-
-**Ready to get started?** 🚀 Begin with [01-GITHUB-SPARK.md](../2025-august/docs/01-GITHUB-SPARK.md)
+- 🔭 I'm the Chief Engineer at [Ultimate QA](https://ultimateqa.com/consulting)
+- 💬 Ask me about environmentalism, veganism, test automation, and fitness
+- 😄 Pronouns: he/him
+- ⚡ Fun fact: I'm a Ukrainian, Russian, Jew that was born in Uzbekistan and raised in US 🤯
+- 📫 Follow me for the latest tips on AI-Driven Development
+  - [AI Testing Tips](https://ultimateqa.ck.page/ai-testing-tips)
+  - [Youtube](https://www.youtube.com/ultimateqa?sub_confirmation=1)
+  - [LinkedIn](https://www.linkedin.com/in/nikolayadvolodkin/)
+  - [Twitter](https://twitter.com/intent/follow?screen_name=nikolay_a00)

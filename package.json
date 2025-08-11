@@ -16,7 +16,7 @@
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:browser": "playwright test tests/e2e/browser.spec.ts --reporter=none",
     "test:e2e:api": "playwright test tests/e2e/api.spec.ts --reporter=none",
-    "test:ci": "playwright test --project=chromium --reporter=dot"
+    "test:ci": "playwright test --project=chromium --reporter=github"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

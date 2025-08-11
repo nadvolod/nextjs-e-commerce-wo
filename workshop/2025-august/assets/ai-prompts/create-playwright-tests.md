@@ -34,8 +34,6 @@ STRUCTURE:
 - playwright.config.ts
 
 Test Execution
-- Do not display Playwright reports in the UI.
-- Run playwright in headless mode when running the tests.
 - Run tests in the background using terminal commands
 - Analyze test results programmatically and provide summary of outcomes
 - Only show test failures or issues that need attention
@@ -45,7 +43,7 @@ Test Execution
 - Don't use a browser for API testing
 - Run tests in parallel
 - Console.log statements should not be used in test files as they create noise in test output.
-- Always run `npx playwright test --reporter=none` when running `npx playwright test`
+- Always run `npx playwright test --reporter=none` on localhost. Use a more robust reporter in CI
 
 Please generate the complete test suite with configuration.
 ```

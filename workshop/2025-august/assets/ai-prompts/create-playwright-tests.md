@@ -33,7 +33,8 @@ STRUCTURE:
 - playwright.config.ts
 
 Test Execution
-- Do not display Playwright reports in the UI
+- Do not display Playwright reports in the UI.
+- Run playwright in headless mode when running the tests.
 - Run tests in the background using terminal commands
 - Analyze test results programmatically and provide summary of outcomes
 - Only show test failures or issues that need attention

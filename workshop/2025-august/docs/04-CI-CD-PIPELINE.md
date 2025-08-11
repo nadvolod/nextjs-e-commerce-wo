@@ -2,6 +2,8 @@
 
 ## AI Prompt: Set Up GitHub Actions CI/CD with Automated Tests
 
+1. Run this prompt in your VSCode 🏋️‍♂️
+
 ```
 Set up a GitHub Actions workflow for this Next.js e-commerce project with the following requirements:
 
@@ -23,3 +25,7 @@ Set up a GitHub Actions workflow for this Next.js e-commerce project with the fo
 
 Please generate the complete `.github/workflows/ci.yml` file and update any project scripts if needed.
 ```
+
+2. Commit to repo
+3. If tests pass then merge into main
+4. If tests fail, iterate on the workflow or test setup until all tests pass in CI

@@ -107,7 +107,6 @@ test.describe('E-commerce Browser Tests', () => {
     // If we can see cart content, that's a good indication the flow works
     expect(cartOpened).toBeTruthy();
     
-    console.log('Checkout flow test - successfully verified login, add to cart, and cart access');
   });
 
 });

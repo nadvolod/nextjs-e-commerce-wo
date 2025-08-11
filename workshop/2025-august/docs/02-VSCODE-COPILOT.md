@@ -428,4 +428,4 @@ Now that you have a properly configured development environment with GitHub Copi
 
 ---
 
-**Continue to:** [03-E2E-TESTS.md](./03-E2E-TESTS.md)
+**Continue to:** [03-TESTS.md](./03-TESTS.md)

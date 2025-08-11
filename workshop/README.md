@@ -34,11 +34,6 @@ cd 2025-august/
 - Performance and accessibility testing
 - Latest tooling and best practices
 
-### [November 2024](./2024-november/)
-
-- Previous iteration with foundational testing concepts
-- Legacy examples and exercises
-
 ## Structure
 
 - **current/** - Symlink to the latest workshop version

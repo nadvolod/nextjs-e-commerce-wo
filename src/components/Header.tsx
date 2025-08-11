@@ -189,7 +189,7 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
             {/* Cart */}
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="outline" size="sm" className="relative">
+                <Button variant="outline" size="sm" className="relative" data-testid="cart-button">
                   <ShoppingCart size={20} />
                   {cartItemCount > 0 && (
                     <Badge

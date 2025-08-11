@@ -138,7 +138,7 @@ export function Checkout({ onPageChange }: CheckoutProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Checkout Form */}
         <div className="lg:col-span-2 space-y-6">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6" data-testid="checkout-form">
             {/* Shipping Information */}
             <Card>
               <CardHeader>
@@ -158,6 +158,7 @@ export function Checkout({ onPageChange }: CheckoutProps) {
                     value={shippingInfo.fullName}
                     onChange={(e) => setShippingInfo({...shippingInfo, fullName: e.target.value})}
                     required
+                    data-testid="fullName-input"
                   />
                 </div>
                 <div>
@@ -262,6 +263,7 @@ export function Checkout({ onPageChange }: CheckoutProps) {
               className="w-full" 
               size="lg"
               disabled={isProcessing}
+              data-testid="place-order-button"
             >
               {isProcessing ? 'Processing Payment...' : `Place Order - ${formatCurrency(cart.total)}`}
             </Button>

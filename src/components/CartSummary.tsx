@@ -139,6 +139,7 @@ export function CartSummary({ onPageChange }: CartSummaryProps) {
               onClick={() => onPageChange('checkout')} 
               className="w-full"
               size="lg"
+              data-testid="proceed-to-checkout-button"
             >
               Proceed to Checkout
             </Button>

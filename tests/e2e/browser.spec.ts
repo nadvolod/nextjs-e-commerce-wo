@@ -42,8 +42,17 @@ test.describe('E-commerce Browser Tests', () => {
     await addToCartButton.click();
     
     // Check if cart count or notification appears (assuming there's some visual feedback)
-    // Since we don't see the exact cart implementation, we'll wait a moment
-    await page.waitForTimeout(1000);
+    // Wait for cart badge or cart update network response to confirm item was added
+    // Prefer UI feedback, fallback to network if needed
+    const cartBadge = page.locator('[data-testid="cart-badge"]');
+    if (await cartBadge.count()) {
+      await expect(cartBadge).toBeVisible();
+    } else {
+      // Fallback: wait for cart API response
+      await page.waitForResponse(response =>
+        response.url().includes('/api/cart') && response.status() === 200
+      );
+    }
     
     // Navigate to checkout page to verify item was added
     // First, let's find a way to navigate - check if there's a checkout link in header

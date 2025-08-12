@@ -1,13 +1,28 @@
 import { expect, test } from "@playwright/test";
 import { sampleProducts } from "../../src/lib/data";
 
+// Type definitions for spark global mock
+interface SparkKV {
+  store: Map<string, any>;
+  get<T>(key: string): Promise<T | undefined>;
+  set<T>(key: string, value: T): Promise<void>;
+  delete(key: string): Promise<void>;
+}
+
+interface SparkGlobal {
+  kv: SparkKV;
+}
+
+declare global {
+  // eslint-disable-next-line no-var
+  var spark: SparkGlobal;
+}
+
 // Minimal spark.kv mock to satisfy api-backend expectations in Node test context
 // Provides get/set/delete on an in-memory Map so ApiClient backend works.
 // Must be defined before importing ApiClient (which instantiates backend).
-// @ts-ignore
-if (!(global as any).spark) {
-  // @ts-ignore
-  (global as any).spark = {
+if (!global.spark) {
+  global.spark = {
     kv: {
       store: new Map<string, any>(),
       async get<T>(key: string): Promise<T | undefined> {

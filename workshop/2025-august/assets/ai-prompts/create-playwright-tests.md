@@ -12,14 +12,11 @@ CONTEXT:
 - Always review this file after every iteration. Always re-run tests after every update.
 
 TESTS NEEDED:
-1. Browser Tests (3 essential flows):
+1. Browser Tests (1 essential flows):
    - Homepage loads and displays products
-   - Add product to cart workflow
-   - Basic checkout flow (form validation)
 
-2. API Tests (2 core endpoints):
+2. API Tests (1 core endpoints):
    - GET /api/products - returns product list
-   - POST /api/cart - adds item to cart
 
 CONSTRAINTS:
 - Keep tests minimal but robust

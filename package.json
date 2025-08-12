@@ -10,12 +10,11 @@
     "lint": "eslint .",
     "optimize": "vite optimize",
     "preview": "vite preview",
-    "test:e2e": "playwright test --reporter=none",
     "postinstall": "playwright install --with-deps",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
-    "test:e2e:browser": "playwright test tests/e2e/browser.spec.ts --reporter=none",
-    "test:e2e:api": "playwright test tests/e2e/api.spec.ts --reporter=none",
+    "test:e2e:browser": "playwright test tests/e2e/browser.spec.ts",
+    "test:e2e:api": "playwright test tests/e2e/api.spec.ts",
     "test:ci": "playwright test --project=chromium --reporter=github"
   },
   "dependencies": {

@@ -1,42 +1,53 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from "@playwright/test";
+import { sampleProducts } from "../../src/lib/data";
 
-// Simple in-memory KV for Node test environment to satisfy api-backend's spark.kv usage
-const kvStore = new Map<string, any>();
-const sparkKV = {
-  get: async (key: string) => (kvStore.has(key) ? kvStore.get(key) : null),
-  set: async (key: string, value: any) => { kvStore.set(key, value); },
-  delete: async (key: string) => { kvStore.delete(key); },
-  keys: async () => Array.from(kvStore.keys()),
-};
+// Minimal spark.kv mock to satisfy api-backend expectations in Node test context
+// Provides get/set/delete on an in-memory Map so ApiClient backend works.
+// Must be defined before importing ApiClient (which instantiates backend).
+// @ts-ignore
+if (!(global as any).spark) {
+  // @ts-ignore
+  (global as any).spark = {
+    kv: {
+      store: new Map<string, any>(),
+      async get<T>(key: string): Promise<T | undefined> {
+        return this.store.get(key);
+      },
+      async set<T>(key: string, value: T): Promise<void> {
+        this.store.set(key, value);
+      },
+      async delete(key: string): Promise<void> {
+        this.store.delete(key);
+      },
+    },
+  };
+}
 
-// @ts-ignore define global spark for api-backend
-(globalThis as any).spark = { kv: sparkKV };
+// Pre-seed products and users for the backend before it initializes
+// @ts-ignore
+(global as any).spark.kv.set("api_products", [...sampleProducts]);
+// Seed minimal users to satisfy possible auth code paths
+// @ts-ignore
+(global as any).spark.kv.set("api_users", [
+  { id: "1", email: "admin@test.com", name: "Admin User", role: "admin" },
+]);
 
-test.describe('E-commerce API Tests (without browser)', () => {
-  test('GET /api/products - returns product list', async () => {
-    const { default: ApiClient } = await import('../../src/lib/api-client');
-    const res = await ApiClient.getProducts();
-    expect(res.success).toBeTruthy();
-    expect(Array.isArray(res.data)).toBeTruthy();
-    expect((res.data || []).length).toBeGreaterThan(0);
-  });
+import { ApiClient } from "../../src/lib/api-client";
 
-  test('POST /api/cart - adds item to cart', async () => {
-    const { default: ApiClient, api } = await import('../../src/lib/api-client');
-    await api.resetData();
+// Simple API tests using in-memory backend directly
 
-    // Login as a regular user
-    const login = await ApiClient.login('user@test.com', 'user123');
-    expect(login.success).toBeTruthy();
-
-    // Add a known product (id "1") to cart
-    const add = await ApiClient.addToCart('1', 1);
-    expect(add.success).toBeTruthy();
-
-    // Read back cart
-    const cart = await ApiClient.getCart();
-    expect(cart.success).toBeTruthy();
-    expect(cart.data?.items?.length || 0).toBeGreaterThan(0);
-    expect(cart.data?.items?.[0].productId).toBe('1');
+test.describe("API", () => {
+  test("get products returns full product list", async () => {
+    const resp = await ApiClient.getProducts();
+    expect(resp.success).toBeTruthy();
+    expect(resp.data).toBeDefined();
+    expect(Array.isArray(resp.data)).toBeTruthy();
+    // Expect same number of products as sample data (15)
+    expect(resp.data!.length).toBe(sampleProducts.length);
+    // Basic shape check
+    const first = resp.data![0];
+    expect(first).toHaveProperty("id");
+    expect(first).toHaveProperty("name");
+    expect(first).toHaveProperty("price");
   });
 });

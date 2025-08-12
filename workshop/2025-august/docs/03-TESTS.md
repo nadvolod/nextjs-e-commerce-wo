@@ -13,7 +13,7 @@ In this module, you'll use GitHub Copilot to create automated tests for the e-co
 #### Step 1: Use the AI Prompt
 
 1. Open GitHub Copilot Chat in VS Code
-2. Use the prompt from [`../assets/ai-prompts/create-playwright-tests.md`](../assets/ai-prompts/create-playwright-tests.md)
+2. Use the prompt from [`../assets/ai-prompts/create-playwright-tests.md`](../assets/ai-prompts/create-playwright-tests.md). But minimize it to 1 API and 1 UI test! Otherwise this might take a long time!!
 3. Let Copilot generate the complete test suite
 
 #### Step 2: Review Generated Tests
@@ -30,6 +30,7 @@ Copilot should create:
 ### Exercise🏋️‍♂️
 
 Create an AI Prompt and guidelines that will fix these tests.
+How would you update the prompt?
 
 ### Key Testing Concepts
 
@@ -50,7 +51,7 @@ Context engineering refers to the deliberate design, management, and optimizatio
 
 ## What's Next?
 
-Now that we have comprehensive E2E testing in place, the next module will cover integrating these tests into modern CI/CD pipelines with intelligent automation and deployment strategies.
+Now that we have some tests in place, the next module (Module 4) will cover integrating these tests into a modern CI/CD pipeline. After that, Module 5 will wrap everything up with conclusions and next steps for applying what you learned in real projects.
 
 ---
 

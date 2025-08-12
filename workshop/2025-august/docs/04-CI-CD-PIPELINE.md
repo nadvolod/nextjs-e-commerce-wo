@@ -29,3 +29,7 @@ Please generate the complete `.github/workflows/ci.yml` file and update any proj
 2. Commit to repo
 3. If tests pass then merge into main
 4. If tests fail, iterate on the workflow or test setup until all tests pass in CI
+
+---
+
+**Continue to:** [05-CONCLUSIONS.md](./05-CONCLUSIONS.md)

@@ -54,6 +54,8 @@ By the end of this module, you'll be able to:
 
 ## Part 3: Web Application Setup
 
+> If you already completed the Early Environment Setup from the main README, you don’t need to redo these steps. Just verify the app still builds and runs (`npm run build` then `npm run dev`), then skip ahead to “Exercise: Troubleshooting Development Issues”.
+
 ### Setting Up the E-commerce App
 
 1. **Clone the Repository**
@@ -67,19 +69,31 @@ By the end of this module, you'll be able to:
 2. **Install Dependencies**
 
    ```bash
-   npm install
+   # Use --ignore-scripts to avoid Playwright install issues (per project guidance)
+   npm install --ignore-scripts
    ```
 
-3. **Run the Development Server**
+3. **Build the Application** (NEVER CANCEL; fast but required)
+
+   ```bash
+   npm run build
+   ```
+
+4. **Run the Development Server**
 
    ```bash
    npm run dev
    ```
 
-4. **Verify Setup**
+5. **Verify Setup**
    - Open the URL printed in the terminal by the dev server (for Vite, typically http://localhost:5173 unless overridden)
    - Navigate through the e-commerce app
-   - Check that all features work
+   - Check that core features work
+
+> Notes:
+>
+> - E2E tests are not part of initial setup because Playwright browser installation may fail in some environments. See Troubleshooting for details.
+> - Linting is currently not configured (eslint command will fail). This is expected.
 
 ### Exercise: Troubleshooting Development Issues
 

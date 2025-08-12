@@ -36,10 +36,18 @@ In this workshop you will learn the latest and greatest AI tools and techniques 
 
 ## Prerequisites
 
-- VSCode isntalled [https://code.visualstudio.com/](https://code.visualstudio.com/)
+- VS Code installed [https://code.visualstudio.com/](https://code.visualstudio.com/)
+- Node.js 20+ (22 recommended) and npm 10+ (verify with `node -v` and `npm -v`)
 - GitHub account with Copilot access
 - Basic JavaScript/TypeScript knowledge
 - Browser (Chrome/Edge recommended for Codespaces)
+- Optional: Early environment setup (recommended before the workshop to reduce setup time)
+  - Follow “Module 2: VSCode & GitHub Copilot Setup → Setting Up the E-commerce App”
+  - Run:
+    - `npm install --ignore-scripts`
+    - `npm run build`
+    - `npm run dev`
+  - Details: [Module 2 setup guide](./workshop/2025-august/docs/02-VSCODE-COPILOT.md#setting-up-the-e-commerce-app)
 
 ## Your Instructor: Nikolay Advolodkin
 

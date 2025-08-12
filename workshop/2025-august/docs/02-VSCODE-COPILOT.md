@@ -26,12 +26,6 @@ By the end of this module, you'll be able to:
 
 ### Installing VSCode
 
-1. **Download VSCode**
-
-   - Visit [https://code.visualstudio.com/](https://code.visualstudio.com/)
-   - Download for your operating system
-   - Install following standard procedures
-
 ## Part 2: GitHub Copilot Installation and Authentication
 
 ### Installing GitHub Copilot
@@ -356,20 +350,6 @@ This is a Next.js e-commerce application for the workshop. Focus on modern devel
 4. Explore the generated e-commerce application
 5. Document any issues encountered
 
-### Task 3: Copilot Practice (25 minutes)
-
-1. Create a `.copilot-instructions.md` file for your project
-2. Use Copilot to generate a new React component
-3. Practice using Copilot Chat for code explanations
-4. Use inline chat to modify existing code
-5. Generate documentation for a function
-
-### Task 4: Troubleshooting Exercise (10 minutes)
-
-1. Intentionally create a common error (e.g., missing dependency)
-2. Use Copilot Chat to diagnose and fix the issue
-3. Document the solution process
-
 ## Best Practices for AI-Assisted Development
 
 ### 1. Provide Clear Context
@@ -395,32 +375,6 @@ This is a Next.js e-commerce application for the workshop. Focus on modern devel
 - Don't accept suggestions blindly
 - Refactor AI-generated code when needed
 - Ensure consistent style across your codebase
-
-## Common Copilot Patterns for E-commerce
-
-### Component Generation
-
-```typescript
-// Create a responsive product card component with TypeScript and Tailwind
-// Include: product image, name, price, add to cart button
-// Handle loading and error states
-```
-
-### API Integration
-
-```typescript
-// Create a custom hook for fetching products
-// Include loading, error, and data states
-// Implement proper error handling and TypeScript types
-```
-
-### Testing
-
-```typescript
-// Generate unit tests for this shopping cart function
-// Test edge cases: empty cart, invalid quantities, tax calculations
-// Use Jest and React Testing Library
-```
 
 ## What's Next?
 

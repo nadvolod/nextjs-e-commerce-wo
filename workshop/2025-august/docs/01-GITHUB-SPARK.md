@@ -1,4 +1,4 @@
-# Module 1: SPARK AI - Intelligent Test Automation
+# Module 1: GitHub Spark
 
 [About You?](https://www.menti.com/al2kjmdkno3a)
 
@@ -21,6 +21,8 @@ GitHub Spark helps you transform your ideas into full-stack intelligent apps and
 
 ## Exercise 1
 
+⏰ 10-20 mins
+
 1. Go to https://github.com/spark
 2. Paste [the e-commerce prompt](../assets/ai-prompts/create-web-app.md) into the chatbox
 3. Watch GitHub AI do it's magic
@@ -28,9 +30,10 @@ GitHub Spark helps you transform your ideas into full-stack intelligent apps and
 5. Clone the repo
 6. `cd <your-repo>` and run `npm install`
 7. `npm run dev` to start the app locally
+
 ## What's Next?
 
-❗TODO
+Now that we have our app locally. Let's use GitHub Copilot AI to fix some bugs.
 
 ---
 

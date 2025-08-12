@@ -34,8 +34,9 @@ In this workshop you will learn the latest and greatest AI tools and techniques 
 3. **Navigate to current workshop**: `cd workshop/current`
 4. **Follow the setup instructions** in the workshop README
 
-## Requirements
+## Prerequisites
 
+- VSCode isntalled [https://code.visualstudio.com/](https://code.visualstudio.com/)
 - GitHub account with Copilot access
 - Basic JavaScript/TypeScript knowledge
 - Browser (Chrome/Edge recommended for Codespaces)

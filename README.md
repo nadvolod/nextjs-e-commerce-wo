@@ -14,7 +14,7 @@ AI For Good accelerates engineering careers by turning AI complexity into compet
 
 ## Current Workshop (August 2025)
 
-🚀 **[Start the current workshop →](./workshop/current/README.md)**
+🚀 **[Start the workshop →](./workshop/2025-august/docs/01-GITHUB-SPARK.md)**
 
 In this workshop you will learn the latest and greatest AI tools and techniques to elevate your competitive advantage in the marketplace.
 
@@ -69,9 +69,9 @@ In this workshop you will learn the latest and greatest AI tools and techniques 
 - ⚡ Fun fact: I'm a Ukrainian, Russian, Jew that was born in Uzbekistan and raised in US 🤯
 - 📫 Follow me for the latest tips on AI-Driven Development
   - [AI Testing Tips](https://ultimateqa.ck.page/ai-testing-tips)
-  - [Youtube](https://www.youtube.com/ultimateqa?sub_confirmation=1)
+  - [YouTube](https://www.youtube.com/@ultimateqa)
   - [LinkedIn](https://www.linkedin.com/in/nikolayadvolodkin/)
-  - [Twitter](https://twitter.com/intent/follow?screen_name=nikolay_a00)
+  - [Twitter](https://x.com/Nikolay_A00)
 
 ## Workshop Versions
 

@@ -2,6 +2,16 @@
 
 AI For Good accelerates engineering careers by turning AI complexity into competitive advantage.
 
+## Table of Contents
+- [Current Workshop (August 2025)](#current-workshop-august-2025)
+- [You Will Learn](#you-will-learn-to)
+- [Technologies You Will Use](#technologies-you-will-use)
+- [Quick Start](#quick-start)
+- [Prerequisites](#prerequisites)
+- [Your Instructor](#your-instructor-nikolay-advolodkin)
+- [Workshop Versions](#workshop-versions)
+- [Contributing](#contributing)
+
 ## Current Workshop (August 2025)
 
 🚀 **[Start the current workshop →](./workshop/current/README.md)**

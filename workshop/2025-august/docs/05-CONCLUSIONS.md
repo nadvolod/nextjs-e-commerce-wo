@@ -176,7 +176,7 @@ Help us make this workshop even better:
 ### Stay Connected & Share the Love
 
 - 💼 Connect on LinkedIn: [Nikolay Advolodkin](https://www.linkedin.com/in/nikolayadvolodkin/)
-- 🎦 Connect on [YouTube](youtube.com/@ultimateqa)
+- 🎦 Connect on [YouTube](https://www.youtube.com/@ultimateqa)
 - 🐦 Follow me on X (Twitter): [@nikolay_00](https://x.com/Nikolay_A00)
 - 📸 Tag your workshop progress: `#AIForGood`
 - 📸 Share a screenshot or takeaway and tag me for a retweet or shoutout!
@@ -219,7 +219,7 @@ The future of software development is collaborative - between humans and AI, bet
 
 ### Workshop Materials
 
-- [Complete workshop repository](https://github.com/workshop/nextjs-e-commerce-wo)
+- [Complete workshop repository](https://github.com/nadvolod/nextjs-e-commerce-wo)
 - [Exercise solutions and examples](../exercises/solutions/)
 - [Template files and configurations](../assets/templates/)
 
@@ -231,3 +231,7 @@ The future of software development is collaborative - between humans and AI, bet
 ### Contact Information
 
 - **GitHub Issues**: For technical questions and bug reports
+
+---
+
+**Return to:** [01-GITHUB-SPARK.md](./01-GITHUB-SPARK.md) | [02-VSCODE-COPILOT.md](./02-VSCODE-COPILOT.md) | [03-TESTS.md](./03-TESTS.md) | [04-CI-CD-PIPELINE.md](./04-CI-CD-PIPELINE.md)

@@ -39,15 +39,19 @@ This is a React e-commerce application built with Vite, TypeScript, and modern w
 ### Bootstrap and Build the Repository
 
 1. **Install dependencies** (takes 1-2 seconds):
+
    ```bash
    npm install --ignore-scripts
    ```
+
    **Note**: Use `--ignore-scripts` to avoid Playwright installation issues. Install Playwright separately if needed.
 
 2. **Build the application** (takes ~11 seconds - NEVER CANCEL):
+
    ```bash
    npm run build
    ```
+
    **Timeout: Set to 60+ seconds** - Build is fast but allow buffer for slower environments.
 
 3. **Run development server** (starts in ~1 second):
@@ -59,7 +63,9 @@ This is a React e-commerce application built with Vite, TypeScript, and modern w
 ### Testing
 
 #### E2E Testing Setup Issues
+
 **CRITICAL**: Playwright browser installation currently fails due to network restrictions. The following commands will fail:
+
 - `npm install` (fails during postinstall)
 - `npx playwright install`
 - `npm run test:e2e`
@@ -67,10 +73,13 @@ This is a React e-commerce application built with Vite, TypeScript, and modern w
 **Workaround**: Use `npm install --ignore-scripts` and document that E2E tests require manual Playwright setup in different environments.
 
 #### Linting Issues
+
 **CRITICAL**: ESLint configuration is missing. The following command fails:
+
 ```bash
 npm run lint  # FAILS - no eslint.config.js file
 ```
+
 **Status**: Linting is broken and needs manual configuration setup.
 
 ### Testing Preferences
@@ -99,18 +108,23 @@ npm run lint  # FAILS - no eslint.config.js file
 **ALWAYS** test the following scenarios after making changes:
 
 1. **Build Validation**:
+
    ```bash
    npm run build
    ```
+
    Should complete in ~11 seconds without errors.
 
 2. **Development Server**:
+
    ```bash
    npm run dev
    ```
+
    Should start in ~1 second and serve at `http://localhost:5173/`
 
 3. **Core E-commerce Functionality** (MANUAL TEST REQUIRED):
+
    - Navigate to homepage - should display featured products ✅
    - Click "Products" - should show product catalog with 15 items ✅
    - Add item to cart - cart badge should show count ✅
@@ -128,22 +142,23 @@ npm run lint  # FAILS - no eslint.config.js file
 
 ## Command Reference and Timing
 
-| Command | Expected Time | Timeout Setting | Status | Notes |
-|---------|---------------|-----------------|--------|-------|
-| `npm install --ignore-scripts` | 1-2 seconds | 120 seconds | ✅ Works | Use this instead of `npm install` |
-| `npm run build` | ~11 seconds | 60+ seconds | ✅ Works | NEVER CANCEL - fast but allow buffer |
-| `npm run dev` | ~1 second | 30 seconds | ✅ Works | Serves on port 5173 |
-| `npm run lint` | N/A | N/A | ❌ Broken | No ESLint config file |
-| `npm run test:e2e` | N/A | N/A | ❌ Broken | Playwright installation fails |
+| Command                        | Expected Time | Timeout Setting | Status    | Notes                                |
+| ------------------------------ | ------------- | --------------- | --------- | ------------------------------------ |
+| `npm install --ignore-scripts` | 1-2 seconds   | 120 seconds     | ✅ Works  | Use this instead of `npm install`    |
+| `npm run build`                | ~11 seconds   | 60+ seconds     | ✅ Works  | NEVER CANCEL - fast but allow buffer |
+| `npm run dev`                  | ~1 second     | 30 seconds      | ✅ Works  | Serves on port 5173                  |
+| `npm run lint`                 | N/A           | N/A             | ❌ Broken | No ESLint config file                |
+| `npm run test:e2e`             | N/A           | N/A             | ❌ Broken | Playwright installation fails        |
 
 ## Project Structure
 
 ### Key Directories
+
 ```
 ├── src/
 │   ├── components/          # React components
 │   ├── contexts/           # React contexts (Auth, Cart)
-│   ├── hooks/              # Custom React hooks  
+│   ├── hooks/              # Custom React hooks
 │   ├── lib/                # Utility functions, API client
 │   ├── types/              # TypeScript type definitions
 │   └── styles/             # CSS and styling files
@@ -153,6 +168,7 @@ npm run lint  # FAILS - no eslint.config.js file
 ```
 
 ### Important Files
+
 - `src/App.tsx` - Main application component with routing
 - `src/lib/data.ts` - Sample product data
 - `src/contexts/CartContext.tsx` - Shopping cart state management
@@ -163,15 +179,18 @@ npm run lint  # FAILS - no eslint.config.js file
 ## Common Development Tasks
 
 ### Adding New Products
-- Edit `src/lib/data.ts` 
+
+- Edit `src/lib/data.ts`
 - Products require: id, name, price, description, category, image, inventory
 
 ### Modifying Components
+
 - Components are in `src/components/`
 - Use TypeScript for all new components
 - Follow existing patterns for data-testid attributes
 
 ### Styling Changes
+
 - Uses Tailwind CSS utility classes
 - Custom components in `src/components/ui/`
 - Theme configuration in `tailwind.config.js`
@@ -179,6 +198,7 @@ npm run lint  # FAILS - no eslint.config.js file
 ## CI/CD Pipeline
 
 The GitHub Actions workflow (`.github/workflows/ci.yml`) currently:
+
 - Runs on Node.js LTS
 - Installs dependencies with `npm ci`
 - Attempts Playwright browser installation (currently fails)
@@ -190,11 +210,13 @@ The GitHub Actions workflow (`.github/workflows/ci.yml`) currently:
 
 ### Common Issues
 
-1. **"Cannot find module 'none'" when running tests**: 
+1. **"Cannot find module 'none'" when running tests**:
+
    - This is a Playwright reporter configuration issue
    - Tests are designed to work but Playwright setup is broken
 
-2. **ESLint errors**: 
+2. **ESLint errors**:
+
    - No ESLint configuration file exists
    - Linting must be set up manually
 
@@ -232,6 +254,7 @@ These errors do not prevent the core e-commerce functionality from working.
 ## Validation Checklist
 
 Before completing any changes:
+
 - [ ] `npm run build` completes successfully
 - [ ] Development server starts without errors
 - [ ] Homepage loads and displays products correctly
@@ -244,6 +267,15 @@ Before completing any changes:
 ## API Testing
 
 The application includes API testing functionality:
+
 - Navigate to "API Test" page for manual API validation
 - API client is in `src/lib/api-client.ts`
 - Uses in-memory backend with localStorage persistence
+
+## Nikolay Advolodkin
+
+These are the correct social links to follow me for the latest updates:
+
+- [Youtube](https://www.youtube.com/ultimateqa?sub_confirmation=1)
+- [LinkedIn](https://www.linkedin.com/in/nikolayadvolodkin/)
+- [Twitter](https://twitter.com/intent/follow?screen_name=nikolay_a00)

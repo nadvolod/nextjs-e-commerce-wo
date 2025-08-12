@@ -1,4 +1,4 @@
-# Module 3: End-to-End Testing Strategies
+# Module 3: Testing Strategies
 
 ## Modern E2E Testing Approach
 

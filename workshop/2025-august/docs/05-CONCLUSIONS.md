@@ -131,14 +131,16 @@ You have:
 - **Testing JavaScript** – Kent C. Dodds' community
 - **Ministry of Testing** – Global testing community
 - **DevOps Communities** – Local meetups and online forums
-- **ChatGPT 5 Tutorial (Video)** – https://youtu.be/EdsdensLZao?si=i-pW7EfnnNght9kN
-- **GitHub Spark Tutorial (Video)** – https://youtu.be/NAPrA4VjhCo?si=BoRXPOzQYaGQBt_m
+- **[ChatGPT 5 Tutorial (Video)](https://youtu.be/EdsdensLZao?si=i-pW7EfnnNght9kN)**
+- **[GitHub Spark Tutorial (Video)](https://youtu.be/NAPrA4VjhCo?si=BoRXPOzQYaGQBt_m)**
 
 ---
 
 ## 🚀 We Want Your Feedback!
 
 Friends, this workshop is absolutely Free! I spent over 40 hours to prepare this content to elevate your careers.
+
+The more support that I get, the bigger I can make these events.
 
 Help us make this workshop even better:
 
@@ -152,7 +154,7 @@ Help us make this workshop even better:
 - [Repost and Comment on X (Twitter)](https://x.com/Nikolay_A00/status/1952705500363059547)
 - [Repost and Comment about your experience on LinkedIn](https://www.linkedin.com/posts/nikolayadvolodkin_aiforgood-ai-engineering-activity-7355937696403398657-m1eP?utm_source=share&utm_medium=member_desktop&rcm=ACoAABMHjPABFfj-Vwo7FCX-JoVU5d2_I97Txu0)
 
-### Share my services
+### Share my services with your network
 
 ✅ Training for organizations and teams
 ✅ Automated testing implementation

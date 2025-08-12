@@ -57,10 +57,11 @@ test.describe("API", () => {
     expect(resp.success).toBeTruthy();
     expect(resp.data).toBeDefined();
     expect(Array.isArray(resp.data)).toBeTruthy();
+    const products = resp.data;
     // Expect same number of products as sample data (15)
-    expect(resp.data!.length).toBe(sampleProducts.length);
+    expect(products.length).toBe(sampleProducts.length);
     // Basic shape check
-    const first = resp.data![0];
+    const first = products[0];
     expect(first).toHaveProperty("id");
     expect(first).toHaveProperty("name");
     expect(first).toHaveProperty("price");

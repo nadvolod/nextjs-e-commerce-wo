@@ -50,5 +50,3 @@ In this workshop you will learn the latest and greatest AI tools and techniques 
   - [Youtube](https://www.youtube.com/ultimateqa?sub_confirmation=1)
   - [LinkedIn](https://www.linkedin.com/in/nikolayadvolodkin/)
   - [Twitter](https://twitter.com/intent/follow?screen_name=nikolay_a00)
-
-> Note: Conclusions are now in Module 5 (05-CONCLUSIONS.md) after renumbering.

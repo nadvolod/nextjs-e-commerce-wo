@@ -6,7 +6,7 @@ After implementing the CI/CD pipeline in Module 4, this final module synthesizes
 
 ## Congratulations! 🎉
 
-You've completed the Next.js E-Commerce AI Workshop! You now have hands-on experience with:
+You've completed the AI For Good Workshop! You now have hands-on experience with:
 
 - AI-powered app generation (GitHub Spark)
 - AI-assisted coding (GitHub Copilot)
@@ -109,6 +109,7 @@ You have:
    - Mentor others on AI and testing
    - Help set standards for your team
    - Drive a quality-first culture
+   - Volunteer or teach with AI For Good
 
 2. **Grow Your Career**
    - Get certified (Playwright, GitHub Actions, ISTQB, etc.)
@@ -124,26 +125,14 @@ You have:
 - **"Testing JavaScript Applications"** by Lucas da Costa
 - **"Accelerate"** by Nicole Forsgren, Jez Humble, and Gene Kim
 
-### Online Courses and Certifications
-
-- **Playwright Testing Certification**
-- **GitHub Actions Certification**
-- **ISTQB Software Testing Certifications**
-- **DevOps and CI/CD Specializations**
-
 ### Communities and Resources
 
 - **GitHub Community** – Copilot and Spark discussions
 - **Testing JavaScript** – Kent C. Dodds' community
 - **Ministry of Testing** – Global testing community
 - **DevOps Communities** – Local meetups and online forums
-
-### Tools to Explore
-
-- **Advanced Testing**: Cypress, WebDriver IO, Puppeteer
-- **Performance**: WebPageTest, GTmetrix, New Relic
-- **Accessibility**: WAVE, Pa11y, Lighthouse
-- **Visual Testing**: Chromatic, Applitools, BackstopJS
+- **ChatGPT 5 Tutorial (Video)** – https://youtu.be/EdsdensLZao?si=i-pW7EfnnNght9kN
+- **GitHub Spark Tutorial (Video)** – https://youtu.be/NAPrA4VjhCo?si=BoRXPOzQYaGQBt_m
 
 ---
 
@@ -157,6 +146,7 @@ Help us make this workshop even better:
 - 💬 Share what worked (or didn't!)
 - 💡 Suggest improvements or new topics
 - 📝 Contribute your own examples or tips
+
 ### Quick Share Links
 
 - [Repost and Comment on X (Twitter)](https://x.com/Nikolay_A00/status/1952705500363059547)

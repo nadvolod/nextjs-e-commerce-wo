@@ -32,13 +32,6 @@ Copilot should create:
 Create an AI Prompt and guidelines that will fix these tests.
 How would you update the prompt?
 
-### Key Testing Concepts
-
-- **Critical Path Focus**: Test only the most important user journeys
-- **AI-Assisted Creation**: Let Copilot handle boilerplate and configuration
-- **Simple Assertions**: Verify key functionality without over-testing
-- **Fast Feedback**: Keep tests quick and reliable
-
 ## Context Engineering
 
 Context Engineering is the future of software engineering!
@@ -48,6 +41,13 @@ Context engineering refers to the deliberate design, management, and optimizatio
 ```
 
 [Lesson 03 PR Example](https://github.com/nadvolod/nextjs-e-commerce-wo/pull/9)
+
+### Key Testing Concepts
+
+- **Critical Path Focus**: Test only the most important user journeys
+- **AI-Assisted Creation**: Let Copilot handle boilerplate and configuration
+- **Simple Assertions**: Verify key functionality without over-testing
+- **Fast Feedback**: Keep tests quick and reliable
 
 ## What's Next?
 

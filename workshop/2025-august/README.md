@@ -2,21 +2,6 @@
 
 AI For Good accelerates engineering careers by turning AI complexity into competitive advantage.
 
-## Table of Contents
-
-- [Current Workshop (August 2025)](#current-workshop-august-2025)
-- [You Will Learn](#you-will-learn-to)
-- [Technologies You Will Use](#technologies-you-will-use)
-- [Quick Start](#quick-start)
-- [Prerequisites](#prerequisites)
-- [Your Instructor](#your-instructor-nikolay-advolodkin)
-- [Workshop Versions](#workshop-versions)
-- [Contributing](#contributing)
-
-## Current Workshop (August 2025)
-
-🚀 **[Start the workshop →](./workshop/2025-august/docs/01-GITHUB-SPARK.md)**
-
 In this workshop you will learn the latest and greatest AI tools and techniques to elevate your competitive advantage in the marketplace.
 
 ## 🧠You will learn to
@@ -45,24 +30,15 @@ In this workshop you will learn the latest and greatest AI tools and techniques 
 3. **Navigate to current workshop**: `cd workshop/current`
 4. **Follow the setup instructions** in the workshop README
 
-## Prerequisites
+## Requirements
 
-- VS Code installed [https://code.visualstudio.com/](https://code.visualstudio.com/)
-- Node.js 20+ (22 recommended) and npm 10+ (verify with `node -v` and `npm -v`)
 - GitHub account with Copilot access
 - Basic JavaScript/TypeScript knowledge
 - Browser (Chrome/Edge recommended for Codespaces)
-- Optional: Early environment setup (recommended before the workshop to reduce setup time)
-  - Follow “Module 2: VSCode & GitHub Copilot Setup → Setting Up the E-commerce App”
-  - Run:
-    - `npm install --ignore-scripts`
-    - `npm run build`
-    - `npm run dev`
-  - Details: [Module 2 setup guide](./workshop/2025-august/docs/02-VSCODE-COPILOT.md#setting-up-the-e-commerce-app)
 
 ## Your Instructor: Nikolay Advolodkin
 
-<!-- Profile photo will be added later - see graphics/README.md -->
+<img src="./graphics/NikolayAndMia.JPG" alt="me" width="200"/>
 
 - 🔭 I'm the Chief Engineer at [Ultimate QA](https://ultimateqa.com/consulting)
 - 💬 Ask me about environmentalism, veganism, test automation, and fitness
@@ -75,20 +51,4 @@ In this workshop you will learn the latest and greatest AI tools and techniques 
   - [LinkedIn](https://www.linkedin.com/in/nikolayadvolodkin/)
   - [Twitter](https://twitter.com/intent/follow?screen_name=nikolay_a00)
 
-## Workshop Versions
-
-| Version                                | Date     | Key Updates                                | Status     |
-| -------------------------------------- | -------- | ------------------------------------------ | ---------- |
-| [August 2025](./workshop/2025-august/) | Aug 2025 | GitHub Spark AI, Advanced Copilot features | 🟢 Current |
-
-## Contributing
-
-Found an issue or have suggestions? Please:
-
-1. Check if it applies to the [current workshop version](./workshop/current/)
-2. Open an issue with the workshop version tag
-3. Submit PRs against the current workshop iteration
-
----
-
-💡 **Tip**: Bookmark the [current workshop link](./workshop/current/) - it always points to the latest version!
+> Note: Conclusions are now in Module 5 (05-CONCLUSIONS.md) after renumbering.

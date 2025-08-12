@@ -4,14 +4,16 @@ AI For Good accelerates engineering careers by turning AI complexity into compet
 
 ## Table of Contents
 
-- [Current Workshop (August 2025)](#current-workshop-august-2025)
-- [You Will Learn](#you-will-learn-to)
-- [Technologies You Will Use](#technologies-you-will-use)
-- [Quick Start](#quick-start)
-- [Prerequisites](#prerequisites)
-- [Your Instructor](#your-instructor-nikolay-advolodkin)
-- [Workshop Versions](#workshop-versions)
-- [Contributing](#contributing)
+- [AI For Good Workshop](#ai-for-good-workshop)
+  - [Table of Contents](#table-of-contents)
+  - [Current Workshop (August 2025)](#current-workshop-august-2025)
+  - [🧠You will learn to](#you-will-learn-to)
+  - [🔧Technologies you will use](#technologies-you-will-use)
+  - [Your Instructor: Nikolay Advolodkin](#your-instructor-nikolay-advolodkin)
+  - [Quick Start](#quick-start)
+  - [Prerequisites](#prerequisites)
+  - [Workshop Versions](#workshop-versions)
+  - [Contributing](#contributing)
 
 ## Current Workshop (August 2025)
 
@@ -38,6 +40,20 @@ In this workshop you will learn the latest and greatest AI tools and techniques 
 6. [Copilot coding agent](https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/coding-agent/coding-agent)
 7. Next.js
 
+## Your Instructor: Nikolay Advolodkin
+
+<!-- Profile photo will be added later - see graphics/README.md -->
+
+- 🔭 I'm the Chief Engineer at [Ultimate QA](https://ultimateqa.com/consulting)
+- 💬 Ask me about environmentalism, veganism, fitness, and AI Driven Develoment
+- ⚡ Fun fact: I'm a Ukrainian, Russian, Jew that was born in Uzbekistan and raised in US 🤯
+- 📫 Follow me for the latest tips on AI-Driven Development
+  - [Testing with Playwright](https://testing-with-playwright.beehiiv.com/)
+  - [JS Testing Tips by UltimateQA](https://ultimateqa.kit.com/js-testing-tips)
+  - [Youtube](https://www.youtube.com/ultimateqa?sub_confirmation=1)
+  - [LinkedIn](https://www.linkedin.com/in/nikolayadvolodkin/)
+  - [Twitter](https://twitter.com/intent/follow?screen_name=nikolay_a00)
+
 ## Quick Start
 
 1. **Fork this repository**
@@ -59,21 +75,6 @@ In this workshop you will learn the latest and greatest AI tools and techniques 
     - `npm run build`
     - `npm run dev`
   - Details: [Module 2 setup guide](./workshop/2025-august/docs/02-VSCODE-COPILOT.md#setting-up-the-e-commerce-app)
-
-## Your Instructor: Nikolay Advolodkin
-
-<!-- Profile photo will be added later - see graphics/README.md -->
-
-- 🔭 I'm the Chief Engineer at [Ultimate QA](https://ultimateqa.com/consulting)
-- 💬 Ask me about environmentalism, veganism, test automation, and fitness
-- 😄 Pronouns: he/him
-- ⚡ Fun fact: I'm a Ukrainian, Russian, Jew that was born in Uzbekistan and raised in US 🤯
-- 📫 Follow me for the latest tips on AI-Driven Development
-  - [Testing with Playwright](https://testing-with-playwright.beehiiv.com/)
-  - [JS Testing Tips by UltimateQA](https://ultimateqa.kit.com/js-testing-tips)
-  - [Youtube](https://www.youtube.com/ultimateqa?sub_confirmation=1)
-  - [LinkedIn](https://www.linkedin.com/in/nikolayadvolodkin/)
-  - [Twitter](https://twitter.com/intent/follow?screen_name=nikolay_a00)
 
 ## Workshop Versions
 

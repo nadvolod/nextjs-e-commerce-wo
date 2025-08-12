@@ -1,90 +1,34 @@
 import { expect, test } from "@playwright/test";
 
-// NOTE: This file intentionally keeps ONLY the critical user flows defined in the test prompt:
-// 1. Homepage displays products
-// 2. Add to cart works
-// Keep tests minimal; expand only if explicitly requested.
+// Critical UI flows: homepage loads products, add to cart updates cart count
 
-test.describe("E-commerce Browser Tests", () => {
-  test.beforeEach(async ({ page }) => {
-    // Provide a simple window.spark.kv backed by localStorage before app scripts run
-    await page.addInitScript(() => {
-      // @ts-ignore
-      window.spark = {
-        kv: {
-          get: async (key: string) => {
-            try {
-              const raw = localStorage.getItem(key);
-              return raw ? JSON.parse(raw) : null;
-            } catch {
-              return null;
-            }
-          },
-          set: async (key: string, value: any) => {
-            try {
-              localStorage.setItem(key, JSON.stringify(value));
-            } catch {}
-          },
-          delete: async (key: string) => {
-            try {
-              localStorage.removeItem(key);
-            } catch {}
-          },
-          keys: async () => Object.keys(localStorage),
-        },
-      } as any;
-    });
-
-    // Go to homepage before each test
+test.describe("E-commerce UI", () => {
+  test("homepage displays featured products", async ({ page }) => {
     await page.goto("/");
+    // Wait for featured products section
+    await expect(page.getByTestId("featured-products-section")).toBeVisible();
+    // Expect at least 4 featured product cards present (first 4 sample products)
+    const productCards = page.getByTestId(/product-card-/);
+    await expect(productCards).toHaveCount(4); // featured slice(0,4)
   });
 
-  test("homepage loads and displays products", async ({ page }) => {
-    // Check if the page title is loaded
-    await expect(page).toHaveTitle(/E-commerce Testing App/);
+  test("add to cart increments cart badge", async ({ page }) => {
+    await page.goto("/");
+    // Add first product to cart
+    const firstAddButton = page.getByTestId("add-to-cart-1");
+    await expect(firstAddButton).toBeVisible();
+    await firstAddButton.click();
 
-    // Wait for featured products section to be visible
-    await expect(
-      page.locator('[data-testid="featured-products-section"]')
-    ).toBeVisible();
+    const cartButton = page.getByTestId("cart-button");
+    await expect(cartButton).toBeVisible();
 
-    // Check that the products grid is visible and contains products
-    const productsGrid = page.locator('[data-testid="products-grid"]');
-    await expect(productsGrid).toBeVisible();
-
-    // Check that there are product cards displayed
-    const productCards = page.locator('[data-testid^="product-card-"]');
-    await expect(productCards).toHaveCount(4); // Featured products should show 4 items
-
-    // Verify product cards contain essential elements
-    const firstProduct = productCards.first();
-    await expect(
-      firstProduct.locator('[data-testid^="product-image-"]')
-    ).toBeVisible();
-    await expect(
-      firstProduct.locator('[data-testid^="add-to-cart-"]')
-    ).toBeVisible();
-  });
-
-  test("add product to cart workflow", async ({ page }) => {
-    // Wait for products to load (on Home featured section)
-    await page.waitForSelector('[data-testid^="product-card-"]');
-
-    // Click add to cart button on the first product
-    const addToCartButton = page
-      .locator('[data-testid^="add-to-cart-"]')
-      .first();
-    await expect(addToCartButton).toBeVisible();
-    await addToCartButton.click();
-
-    // Open cart and verify cart UI appears
-    const cartButton = page.locator('[data-testid="cart-button"]');
+    // Open cart to ensure state updated (badge may appear asynchronously)
     await cartButton.click();
+    // Close cart by pressing Escape (Sheet)
+    await page.keyboard.press("Escape");
 
-    const cartDialog = page.getByRole("dialog");
-    await expect(cartDialog).toBeVisible();
-    await expect(
-      cartDialog.getByRole("heading", { name: "Shopping Cart" })
-    ).toBeVisible();
+    // Badge is inside cart button; assert text 1 eventually
+    const badge = cartButton.locator("text=1");
+    await expect(badge).toBeVisible();
   });
 });

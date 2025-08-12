@@ -155,9 +155,8 @@ Help us make this workshop even better:
 
 - ⭐ [Take 3 min to rate the content and structure](https://docs.google.com/forms/d/e/1FAIpQLSeVJFMLlJI082JxbZWlS8LR4EbB3kr1Rcid4GGf6sjxc6mRJw/viewform?usp=header)
 - 💬 Share what worked (or didn't!)
-- �️ Suggest improvements or new topics
+- 💡 Suggest improvements or new topics
 - 📝 Contribute your own examples or tips
-
 ### Quick Share Links
 
 - [Repost and Comment on X (Twitter)](https://x.com/Nikolay_A00/status/1952705500363059547)

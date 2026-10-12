@@ -6,29 +6,27 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { CreditCard, Truck, CheckCircle } from '@phosphor-icons/react';
+import { CreditCard, Truck } from '@phosphor-icons/react';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { sampleProducts, formatCurrency, generateOrderId } from '@/lib/data';
-import { Order } from '@/types';
+import { Order, ShippingAddress } from '@/types';
 import { useKV } from '@/hooks/useKV';
 import { toast } from 'sonner';
 
 interface CheckoutProps {
-  onPageChange: (page: string) => void;
+  onPageChange: (page: string, orderId?: string) => void;
 }
 
 export function Checkout({ onPageChange }: CheckoutProps) {
   const [isProcessing, setIsProcessing] = useState(false);
-  const [orderComplete, setOrderComplete] = useState(false);
-  const [orderId, setOrderId] = useState('');
   const [orders, setOrders] = useKV<Order[]>('user-orders', []);
-  
+
   const { cart, clearCart } = useCart();
   const { user } = useAuth();
 
   // Form state
-  const [shippingInfo, setShippingInfo] = useState({
+  const [shippingInfo, setShippingInfo] = useState<ShippingAddress>({
     fullName: '',
     address: '',
     city: '',
@@ -74,6 +72,18 @@ export function Checkout({ onPageChange }: CheckoutProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const nativeEvent = e.nativeEvent as SubmitEvent;
+    const agentInvoked = nativeEvent.agentInvoked === true;
+
+    if (agentInvoked && typeof nativeEvent.respondWith === 'function') {
+      nativeEvent.respondWith(
+        Promise.resolve({
+          content: [{ type: 'text', text: 'Shipping and billing details filled successfully' }]
+        })
+      );
+      return;
+    }
+
     setIsProcessing(true);
 
     // Simulate payment processing
@@ -83,53 +93,21 @@ export function Checkout({ onPageChange }: CheckoutProps) {
     const newOrder: Order = {
       id: newOrderId,
       userId: user.id,
-      items: cart.items,
+      items: [...cart.items],
       subtotal: cart.subtotal,
       tax: cart.tax,
       shipping: cart.shipping,
       total: cart.total,
       status: 'processing',
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
+      shippingAddress: shippingInfo
     };
 
     setOrders(currentOrders => [...currentOrders, newOrder]);
     clearCart();
-    setOrderId(newOrderId);
-    setOrderComplete(true);
-    setIsProcessing(false);
-    
     toast.success('Order placed successfully!');
+    onPageChange('order-confirmation', newOrderId);
   };
-
-  if (orderComplete) {
-    return (
-      <div className="max-w-2xl mx-auto px-4 py-8">
-        <Card>
-          <CardContent className="pt-6 text-center">
-            <CheckCircle size={64} className="mx-auto text-green-500 mb-4" />
-            <h2 className="text-2xl font-bold mb-2">Order Confirmed!</h2>
-            <p className="text-muted-foreground mb-4">
-              Thank you for your purchase. Your order has been placed successfully.
-            </p>
-            <div className="bg-muted p-4 rounded-lg mb-6">
-              <p className="font-semibold">Order ID: {orderId}</p>
-              <p className="text-sm text-muted-foreground">
-                Total: {formatCurrency(cart.total)}
-              </p>
-            </div>
-            <div className="space-x-4">
-              <Button onClick={() => onPageChange('orders')}>
-                View Orders
-              </Button>
-              <Button variant="outline" onClick={() => onPageChange('products')}>
-                Continue Shopping
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -138,7 +116,14 @@ export function Checkout({ onPageChange }: CheckoutProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Checkout Form */}
         <div className="lg:col-span-2 space-y-6">
-          <form onSubmit={handleSubmit} className="space-y-6" data-testid="checkout-form">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            data-testid="checkout-form"
+            toolname="checkout"
+            tooldescription="Fills in shipping and payment information for the current cart. The user must click Place Order to complete the purchase."
+            toolautosubmit="true"
+          >
             {/* Shipping Information */}
             <Card>
               <CardHeader>
@@ -155,19 +140,23 @@ export function Checkout({ onPageChange }: CheckoutProps) {
                   <Label htmlFor="fullName">Full Name</Label>
                   <Input
                     id="fullName"
+                    name="fullName"
                     value={shippingInfo.fullName}
                     onChange={(e) => setShippingInfo({...shippingInfo, fullName: e.target.value})}
                     required
                     data-testid="fullName-input"
+                    toolparamdescription="Full name of the person receiving the order."
                   />
                 </div>
                 <div>
                   <Label htmlFor="address">Address</Label>
                   <Input
                     id="address"
+                    name="address"
                     value={shippingInfo.address}
                     onChange={(e) => setShippingInfo({...shippingInfo, address: e.target.value})}
                     required
+                    toolparamdescription="Street address for shipping."
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -175,18 +164,22 @@ export function Checkout({ onPageChange }: CheckoutProps) {
                     <Label htmlFor="city">City</Label>
                     <Input
                       id="city"
+                      name="city"
                       value={shippingInfo.city}
                       onChange={(e) => setShippingInfo({...shippingInfo, city: e.target.value})}
                       required
+                      toolparamdescription="City for the shipping address."
                     />
                   </div>
                   <div>
                     <Label htmlFor="state">State</Label>
                     <Input
                       id="state"
+                      name="state"
                       value={shippingInfo.state}
                       onChange={(e) => setShippingInfo({...shippingInfo, state: e.target.value})}
                       required
+                      toolparamdescription="State or province for the shipping address."
                     />
                   </div>
                 </div>
@@ -194,9 +187,11 @@ export function Checkout({ onPageChange }: CheckoutProps) {
                   <Label htmlFor="zipCode">ZIP Code</Label>
                   <Input
                     id="zipCode"
+                    name="zipCode"
                     value={shippingInfo.zipCode}
                     onChange={(e) => setShippingInfo({...shippingInfo, zipCode: e.target.value})}
                     required
+                    toolparamdescription="ZIP or postal code for the shipping address."
                   />
                 </div>
               </CardContent>
@@ -218,19 +213,23 @@ export function Checkout({ onPageChange }: CheckoutProps) {
                   <Label htmlFor="nameOnCard">Name on Card</Label>
                   <Input
                     id="nameOnCard"
+                    name="nameOnCard"
                     value={paymentInfo.nameOnCard}
                     onChange={(e) => setPaymentInfo({...paymentInfo, nameOnCard: e.target.value})}
                     required
+                    toolparamdescription="Name as printed on the payment card."
                   />
                 </div>
                 <div>
                   <Label htmlFor="cardNumber">Card Number</Label>
                   <Input
                     id="cardNumber"
+                    name="cardNumber"
                     placeholder="1234 5678 9012 3456"
                     value={paymentInfo.cardNumber}
                     onChange={(e) => setPaymentInfo({...paymentInfo, cardNumber: e.target.value})}
                     required
+                    toolparamdescription="Payment card number."
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -238,20 +237,24 @@ export function Checkout({ onPageChange }: CheckoutProps) {
                     <Label htmlFor="expiryDate">Expiry Date</Label>
                     <Input
                       id="expiryDate"
+                      name="expiryDate"
                       placeholder="MM/YY"
                       value={paymentInfo.expiryDate}
                       onChange={(e) => setPaymentInfo({...paymentInfo, expiryDate: e.target.value})}
                       required
+                      toolparamdescription="Payment card expiry date in MM/YY format."
                     />
                   </div>
                   <div>
                     <Label htmlFor="cvv">CVV</Label>
                     <Input
                       id="cvv"
+                      name="cvv"
                       placeholder="123"
                       value={paymentInfo.cvv}
                       onChange={(e) => setPaymentInfo({...paymentInfo, cvv: e.target.value})}
                       required
+                      toolparamdescription="Payment card security code (CVV)."
                     />
                   </div>
                 </div>

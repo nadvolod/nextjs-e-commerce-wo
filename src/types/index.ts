@@ -29,6 +29,15 @@ export interface User {
   role: 'admin' | 'customer';
 }
 
+export interface ShippingAddress {
+  fullName: string;
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  country: string;
+}
+
 export interface Order {
   id: string;
   userId: string;
@@ -39,6 +48,7 @@ export interface Order {
   total: number;
   status: 'pending' | 'processing' | 'shipped' | 'delivered';
   createdAt: string;
+  shippingAddress?: ShippingAddress;
 }
 
 export interface AuthContextType {

@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { chromium } from "@playwright/test";
 
 test.describe("E-commerce Browser Tests", () => {
   test.beforeEach(async ({ page }) => {
@@ -166,4 +167,53 @@ test.describe("E-commerce Browser Tests", () => {
     await placeOrder.click();
     await expect(placeOrder).toHaveText(/Processing Payment/);
   });
+
+
+  
+
 });
+
+test.describe('WebMCP with playwright', () => {
+    
+    test('E2E flow with WebMCP', async () => {
+
+      
+        // Implement the test steps for the E2E flow without WebMCP here
+        const browser = await chromium.launch({ args: ['--enable-features=WebMCP'] });
+        const page = await browser.newPage();
+      
+        await page.goto("http://localhost:5173/");
+        await page.getByRole('button', { name: 'Login' }).click();
+
+
+        const login =await page.webmcp.callTool('login', { email: 'admin@test.com', password: 'admin123' }, { timeout:2000});
+        expect(login.content[0].text).toBe('Login successful.');
+        
+
+        await expect(page.locator('header')).toContainText('Admin User');
+
+        const searchProducts = await page.webmcp.callTool('searchProducts', { query: 'oil' }, { timeout:2000});
+        expect(searchProducts.content[0].text).toBe('Navigated to search results for "oil".');
+
+        await page.getByTestId('add-to-cart-12').click();
+        await page.getByTestId('cart-button').click();
+        await page.getByTestId('proceed-to-checkout-button').click();
+        await page.getByRole('button', { name: 'Close' }).click();
+
+        const fillShippingAndBillingDetails = await page.webmcp.callTool('checkout', {
+                address : "Hills worth",
+                cardNumber : "8596 6585 2574 8596",
+                city : "Atlanta",
+                cvv : "859",
+                expiryDate : "23/55",
+                fullName : "David",
+                nameOnCard : "David Moorse",
+                state : "Austin",
+                zipCode : "3039"
+        }, { timeout:2000});
+        expect(fillShippingAndBillingDetails.content[0].text).toBe('Shipping and billing details filled successfully');
+        await page.getByTestId('place-order-button').click();
+        await expect(page.getByRole('list')).toContainText('Order placed successfully!');
+        await browser.close();
+    });
+}); 

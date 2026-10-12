@@ -9,7 +9,7 @@ import { Order } from '@/types';
 import { useKV } from '@/hooks/useKV';
 
 interface OrdersProps {
-  onPageChange: (page: string) => void;
+  onPageChange: (page: string, orderId?: string) => void;
 }
 
 export function Orders({ onPageChange }: OrdersProps) {
@@ -120,12 +120,22 @@ export function Orders({ onPageChange }: OrdersProps) {
                       </span>
                     </CardDescription>
                   </div>
-                  <Badge 
-                    variant={getStatusVariant(order.status)}
-                    className={`${getStatusColor(order.status)} capitalize`}
-                  >
-                    {order.status}
-                  </Badge>
+                  <div className="flex flex-col items-end gap-2">
+                    <Badge
+                      variant={getStatusVariant(order.status)}
+                      className={`${getStatusColor(order.status)} capitalize`}
+                    >
+                      {order.status}
+                    </Badge>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => onPageChange('order-confirmation', order.id)}
+                      data-testid={`view-order-${order.id}`}
+                    >
+                      View Details
+                    </Button>
+                  </div>
                 </div>
               </CardHeader>
 

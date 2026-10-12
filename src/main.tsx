@@ -1,3 +1,5 @@
+import './lib/spark-polyfill'
+
 import { createRoot } from 'react-dom/client'
 import { ErrorBoundary } from "react-error-boundary";
 

@@ -22,12 +22,23 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
   const { getCartItemCount } = useCart();
   const { user, logout } = useAuth();
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const nativeEvent = e.nativeEvent as SubmitEvent;
+    const agentInvoked = nativeEvent.agentInvoked === true;
+
     setIsSearching(true);
     onSearch(searchQuery);
     setIsMobileMenuOpen(false); // Close mobile menu when searching
     setTimeout(() => setIsSearching(false), 300);
+
+    if (agentInvoked && typeof nativeEvent.respondWith === 'function') {
+      nativeEvent.respondWith(
+        Promise.resolve({
+          content: [{ type: 'text', text: `Navigated to search results for "${searchQuery}".` }]
+        })
+      );
+    }
   };
 
   const handlePageChange = (page: string) => {
@@ -168,14 +179,22 @@ export function Header({ onSearch, onPageChange, currentPage }: HeaderProps) {
           </nav>
 
           {/* Search Bar */}
-          <form onSubmit={handleSearch} className="hidden md:flex items-center space-x-2 flex-1 max-w-md mx-8">
+          <form
+            onSubmit={handleSearch}
+            className="hidden md:flex items-center space-x-2 flex-1 max-w-md mx-8"
+            toolname="searchProducts"
+            tooldescription="Searches the product catalog by keyword and navigates to matching results."
+            toolautosubmit="true"
+          >
             <div className="relative flex-1">
               <Input
                 type="text"
+                name="query"
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
+                toolparamdescription="Keywords to search for in product names, descriptions, or categories."
               />
               <MagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
             </div>

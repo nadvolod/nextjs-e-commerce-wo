@@ -20,21 +20,39 @@ export function Login({ onPageChange }: LoginProps) {
   const [error, setError] = useState('');
   const { login, isLoading } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const nativeEvent = e.nativeEvent as SubmitEvent;
+    const agentInvoked = nativeEvent.agentInvoked === true;
     setError('');
 
-    if (!email || !password) {
-      setError('Please fill in all fields');
-      return;
-    }
+    const run = async (): Promise<{ success: boolean; message: string }> => {
+      if (!email || !password) {
+        const message = 'Please fill in all fields';
+        setError(message);
+        return { success: false, message };
+      }
 
-    const success = await login(email, password);
-    if (success) {
-      toast.success('Login successful!');
-      onPageChange('home');
+      const success = await login(email, password);
+      if (success) {
+        toast.success('Login successful!');
+        onPageChange('home');
+        return { success: true, message: 'Login successful.' };
+      } else {
+        const message = 'Invalid email or password';
+        setError(message);
+        return { success: false, message };
+      }
+    };
+
+    if (agentInvoked && typeof nativeEvent.respondWith === 'function') {
+      nativeEvent.respondWith(
+        run().then(({ message }) => ({
+          content: [{ type: 'text', text: message }]
+        }))
+      );
     } else {
-      setError('Invalid email or password');
+      await run();
     }
   };
 
@@ -61,7 +79,13 @@ export function Login({ onPageChange }: LoginProps) {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4"
+              toolname="login"
+              tooldescription="Logs the user into their account using email and password."
+              toolautosubmit="true"
+            >
               {error && (
                 <Alert variant="destructive">
                   <AlertDescription>{error}</AlertDescription>
@@ -73,12 +97,13 @@ export function Login({ onPageChange }: LoginProps) {
                 <div className="relative">
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="pl-10"
-                    disabled={isLoading}
+                    toolparamdescription="The account email address."
                   />
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
                 </div>
@@ -89,12 +114,13 @@ export function Login({ onPageChange }: LoginProps) {
                 <div className="relative">
                   <Input
                     id="password"
+                    name="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="pl-10 pr-10"
-                    disabled={isLoading}
+                    toolparamdescription="The account password."
                   />
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
                   <button

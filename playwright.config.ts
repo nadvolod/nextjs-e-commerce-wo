@@ -8,7 +8,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'dot',
+  reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL: BASE_URL,
     headless: true,
@@ -20,7 +20,8 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], headless: false },
+      
     },
   ],
 

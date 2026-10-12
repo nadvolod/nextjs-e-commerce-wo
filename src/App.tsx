@@ -9,6 +9,7 @@ import { ProductDetails } from '@/components/ProductDetails';
 import { Login } from '@/components/Login';
 import { Checkout } from '@/components/Checkout';
 import { Orders } from '@/components/Orders';
+import { OrderConfirmation } from '@/components/OrderConfirmation';
 import { AdminDashboard } from '@/components/AdminDashboard';
 import { ApiTesting } from '@/components/ApiTesting';
 import { sampleProducts } from '@/lib/data';
@@ -19,6 +20,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isProductDetailsOpen, setIsProductDetailsOpen] = useState(false);
+  const [activeOrderId, setActiveOrderId] = useState<string | null>(null);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -35,12 +37,13 @@ function App() {
     }
   };
 
-  const handlePageChange = (page: string) => {
+  const handlePageChange = (page: string, orderId?: string) => {
     setCurrentPage(page);
     // Clear search when navigating away from products
     if (page !== 'products') {
       setSearchQuery('');
     }
+    setActiveOrderId(page === 'order-confirmation' ? (orderId ?? null) : null);
   };
 
   const renderCurrentPage = () => {
@@ -65,6 +68,13 @@ function App() {
         return <Checkout onPageChange={handlePageChange} />;
       case 'orders':
         return <Orders onPageChange={handlePageChange} />;
+      case 'order-confirmation':
+        return (
+          <OrderConfirmation
+            orderId={activeOrderId}
+            onPageChange={handlePageChange}
+          />
+        );
       case 'admin':
         return <AdminDashboard onPageChange={handlePageChange} />;
       case 'api-testing':

@@ -35,87 +35,99 @@ export function ApiTesting({ onPageChange }: ApiTestingProps) {
     try {
       const result = await testFn();
       setResponse(`=== ${testName} ===\n${formatResponse(result)}`);
-      
+
       if (result.success) {
         toast.success(`${testName} successful`);
       } else {
         toast.error(`${testName} failed: ${result.error}`);
       }
+      return result;
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : 'Unknown error';
       setResponse(`=== ${testName} ERROR ===\n${errorMsg}`);
       toast.error(`${testName} error: ${errorMsg}`);
+      return { success: false, error: errorMsg } as ApiResponse<any>;
     } finally {
       setLoading(false);
     }
   };
 
+  const makeSubmitHandler = (testName: string, testFn: () => Promise<ApiResponse<any>>) =>
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const nativeEvent = e.nativeEvent as SubmitEvent;
+      const resultPromise = runTest(testName, testFn);
+      if (nativeEvent.agentInvoked && typeof nativeEvent.respondWith === 'function') {
+        nativeEvent.respondWith(resultPromise);
+      }
+    };
+
   // Authentication Tests
-  const testLogin = () => runTest('Login Test', () => 
+  const handleLogin = makeSubmitHandler('Login Test', () =>
     api.login(testData.email, testData.password)
   );
 
-  const testGetCurrentUser = () => runTest('Get Current User', () => 
+  const handleGetCurrentUser = makeSubmitHandler('Get Current User', () =>
     api.getCurrentUser()
   );
 
-  const testLogout = () => runTest('Logout Test', () => 
+  const handleLogout = makeSubmitHandler('Logout Test', () =>
     api.logout()
   );
 
   // Product Tests
-  const testGetProducts = () => runTest('Get Products', () => 
-    api.products.getAll({ 
-      search: testData.search, 
-      category: testData.category === 'All' ? undefined : testData.category 
+  const handleGetProducts = makeSubmitHandler('Get Products', () =>
+    api.products.getAll({
+      search: testData.search,
+      category: testData.category === 'All' ? undefined : testData.category
     })
   );
 
-  const testGetProduct = () => runTest('Get Single Product', () => 
+  const handleGetProduct = makeSubmitHandler('Get Single Product', () =>
     api.products.getById(testData.productId)
   );
 
   // Cart Tests
-  const testAddToCart = () => runTest('Add to Cart', () => 
+  const handleAddToCart = makeSubmitHandler('Add to Cart', () =>
     api.cart.add(testData.productId, testData.quantity)
   );
 
-  const testGetCart = () => runTest('Get Cart', () => 
+  const handleGetCart = makeSubmitHandler('Get Cart', () =>
     api.cart.get()
   );
 
-  const testUpdateCart = () => runTest('Update Cart Item', () => 
+  const handleUpdateCart = makeSubmitHandler('Update Cart Item', () =>
     api.cart.update(testData.productId, testData.quantity + 1)
   );
 
-  const testRemoveFromCart = () => runTest('Remove from Cart', () => 
+  const handleRemoveFromCart = makeSubmitHandler('Remove from Cart', () =>
     api.cart.remove(testData.productId)
   );
 
-  const testClearCart = () => runTest('Clear Cart', () => 
+  const handleClearCart = makeSubmitHandler('Clear Cart', () =>
     api.cart.clear()
   );
 
   // Order Tests
-  const testCreateOrder = () => runTest('Create Order', () => 
+  const handleCreateOrder = makeSubmitHandler('Create Order', () =>
     api.orders.create()
   );
 
-  const testGetOrders = () => runTest('Get Orders', () => 
+  const handleGetOrders = makeSubmitHandler('Get Orders', () =>
     api.orders.getAll()
   );
 
   // Admin Tests
-  const testAdminStats = () => runTest('Admin Stats', () => 
+  const handleAdminStats = makeSubmitHandler('Admin Stats', () =>
     api.admin.stats()
   );
 
-  const testAdminOrders = () => runTest('Admin Orders', () => 
+  const handleAdminOrders = makeSubmitHandler('Admin Orders', () =>
     api.admin.orders()
   );
 
   // Utility Tests
-  const testResetData = () => runTest('Reset Data', () => 
+  const handleResetData = makeSubmitHandler('Reset Data', () =>
     api.resetData()
   );
 
@@ -216,16 +228,56 @@ export function ApiTesting({ onPageChange }: ApiTestingProps) {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
-                <Button onClick={testLogin} disabled={loading} variant="outline">
-                  Login
-                </Button>
-                <Button onClick={testGetCurrentUser} disabled={loading} variant="outline">
-                  Get User
-                </Button>
+                <form
+                  onSubmit={handleLogin}
+                  toolname="apiTestLogin"
+                  tooldescription="Logs into the test API backend using email and password."
+                  toolautosubmit="true"
+                >
+                  <div className="space-y-2 mb-2">
+                    <Label htmlFor="apiTestLogin-email" className="text-xs">Email</Label>
+                    <Input
+                      id="apiTestLogin-email"
+                      name="email"
+                      value={testData.email}
+                      onChange={(e) => setTestData(prev => ({ ...prev, email: e.target.value }))}
+                      toolparamdescription="Email address to log in with."
+                    />
+                    <Label htmlFor="apiTestLogin-password" className="text-xs">Password</Label>
+                    <Input
+                      id="apiTestLogin-password"
+                      name="password"
+                      type="password"
+                      value={testData.password}
+                      onChange={(e) => setTestData(prev => ({ ...prev, password: e.target.value }))}
+                      toolparamdescription="Password to log in with."
+                    />
+                  </div>
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Login
+                  </Button>
+                </form>
+                <form
+                  onSubmit={handleGetCurrentUser}
+                  toolname="apiTestGetCurrentUser"
+                  tooldescription="Retrieves the currently authenticated test user."
+                  toolautosubmit="true"
+                >
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Get User
+                  </Button>
+                </form>
               </div>
-              <Button onClick={testLogout} disabled={loading} variant="outline" className="w-full">
-                Logout
-              </Button>
+              <form
+                onSubmit={handleLogout}
+                toolname="apiTestLogout"
+                tooldescription="Logs out the currently authenticated test user."
+                toolautosubmit="true"
+              >
+                <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                  Logout
+                </Button>
+              </form>
             </CardContent>
           </Card>
 
@@ -239,12 +291,54 @@ export function ApiTesting({ onPageChange }: ApiTestingProps) {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
-                <Button onClick={testGetProducts} disabled={loading} variant="outline">
-                  Get Products
-                </Button>
-                <Button onClick={testGetProduct} disabled={loading} variant="outline">
-                  Get Product
-                </Button>
+                <form
+                  onSubmit={handleGetProducts}
+                  toolname="apiTestGetProducts"
+                  tooldescription="Retrieves the list of products, optionally filtered by search term and category."
+                  toolautosubmit="true"
+                >
+                  <div className="space-y-2 mb-2">
+                    <Label htmlFor="getProducts-search" className="text-xs">Search Term</Label>
+                    <Input
+                      id="getProducts-search"
+                      name="search"
+                      value={testData.search}
+                      onChange={(e) => setTestData(prev => ({ ...prev, search: e.target.value }))}
+                      toolparamdescription="Keyword to filter products by."
+                    />
+                    <Label htmlFor="getProducts-category" className="text-xs">Category</Label>
+                    <Input
+                      id="getProducts-category"
+                      name="category"
+                      value={testData.category}
+                      onChange={(e) => setTestData(prev => ({ ...prev, category: e.target.value }))}
+                      toolparamdescription="Category to filter products by."
+                    />
+                  </div>
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Get Products
+                  </Button>
+                </form>
+                <form
+                  onSubmit={handleGetProduct}
+                  toolname="apiTestGetProduct"
+                  tooldescription="Retrieves a single product by its ID."
+                  toolautosubmit="true"
+                >
+                  <div className="space-y-2 mb-2">
+                    <Label htmlFor="getProduct-productId" className="text-xs">Product ID</Label>
+                    <Input
+                      id="getProduct-productId"
+                      name="productId"
+                      value={testData.productId}
+                      onChange={(e) => setTestData(prev => ({ ...prev, productId: e.target.value }))}
+                      toolparamdescription="The ID of the product to retrieve."
+                    />
+                  </div>
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Get Product
+                  </Button>
+                </form>
               </div>
             </CardContent>
           </Card>
@@ -259,22 +353,107 @@ export function ApiTesting({ onPageChange }: ApiTestingProps) {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
-                <Button onClick={testAddToCart} disabled={loading} variant="outline">
-                  Add to Cart
-                </Button>
-                <Button onClick={testGetCart} disabled={loading} variant="outline">
-                  Get Cart
-                </Button>
-                <Button onClick={testUpdateCart} disabled={loading} variant="outline">
-                  Update Cart
-                </Button>
-                <Button onClick={testRemoveFromCart} disabled={loading} variant="outline">
-                  Remove Item
-                </Button>
+                <form
+                  onSubmit={handleAddToCart}
+                  toolname="apiTestAddToCart"
+                  tooldescription="Adds a product to the shopping cart by product ID and quantity."
+                  toolautosubmit="true"
+                >
+                  <div className="space-y-2 mb-2">
+                    <Label htmlFor="addToCart-productId" className="text-xs">Product ID</Label>
+                    <Input
+                      id="addToCart-productId"
+                      name="productId"
+                      value={testData.productId}
+                      onChange={(e) => setTestData(prev => ({ ...prev, productId: e.target.value }))}
+                      toolparamdescription="The ID of the product to add to the cart."
+                    />
+                    <Label htmlFor="addToCart-quantity" className="text-xs">Quantity</Label>
+                    <Input
+                      id="addToCart-quantity"
+                      name="quantity"
+                      type="number"
+                      min="1"
+                      value={testData.quantity}
+                      onChange={(e) => setTestData(prev => ({ ...prev, quantity: parseInt(e.target.value) || 1 }))}
+                      toolparamdescription="How many units of the product to add."
+                    />
+                  </div>
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Add to Cart
+                  </Button>
+                </form>
+                <form
+                  onSubmit={handleGetCart}
+                  toolname="apiTestGetCart"
+                  tooldescription="Retrieves the current shopping cart contents and totals."
+                  toolautosubmit="true"
+                >
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Get Cart
+                  </Button>
+                </form>
+                <form
+                  onSubmit={handleUpdateCart}
+                  toolname="apiTestUpdateCart"
+                  tooldescription="Updates the quantity of a product already in the cart."
+                  toolautosubmit="true"
+                >
+                  <div className="space-y-2 mb-2">
+                    <Label htmlFor="updateCart-productId" className="text-xs">Product ID</Label>
+                    <Input
+                      id="updateCart-productId"
+                      name="productId"
+                      value={testData.productId}
+                      onChange={(e) => setTestData(prev => ({ ...prev, productId: e.target.value }))}
+                      toolparamdescription="The ID of the product to update in the cart."
+                    />
+                    <Label htmlFor="updateCart-quantity" className="text-xs">Quantity</Label>
+                    <Input
+                      id="updateCart-quantity"
+                      name="quantity"
+                      type="number"
+                      min="1"
+                      value={testData.quantity}
+                      onChange={(e) => setTestData(prev => ({ ...prev, quantity: parseInt(e.target.value) || 1 }))}
+                      toolparamdescription="New quantity for the product (the cart will be updated to quantity + 1)."
+                    />
+                  </div>
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Update Cart
+                  </Button>
+                </form>
+                <form
+                  onSubmit={handleRemoveFromCart}
+                  toolname="apiTestRemoveFromCart"
+                  tooldescription="Removes a product from the shopping cart by product ID."
+                  toolautosubmit="true"
+                >
+                  <div className="space-y-2 mb-2">
+                    <Label htmlFor="removeFromCart-productId" className="text-xs">Product ID</Label>
+                    <Input
+                      id="removeFromCart-productId"
+                      name="productId"
+                      value={testData.productId}
+                      onChange={(e) => setTestData(prev => ({ ...prev, productId: e.target.value }))}
+                      toolparamdescription="The ID of the product to remove from the cart."
+                    />
+                  </div>
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Remove Item
+                  </Button>
+                </form>
               </div>
-              <Button onClick={testClearCart} disabled={loading} variant="outline" className="w-full">
-                Clear Cart
-              </Button>
+              <form
+                onSubmit={handleClearCart}
+                toolname="apiTestClearCart"
+                tooldescription="Removes all items from the shopping cart."
+                toolautosubmit="true"
+              >
+                <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                  Clear Cart
+                </Button>
+              </form>
             </CardContent>
           </Card>
 
@@ -288,12 +467,26 @@ export function ApiTesting({ onPageChange }: ApiTestingProps) {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
-                <Button onClick={testCreateOrder} disabled={loading} variant="outline">
-                  Create Order
-                </Button>
-                <Button onClick={testGetOrders} disabled={loading} variant="outline">
-                  Get Orders
-                </Button>
+                <form
+                  onSubmit={handleCreateOrder}
+                  toolname="apiTestCreateOrder"
+                  tooldescription="Creates an order from the current shopping cart."
+                  toolautosubmit="true"
+                >
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Create Order
+                  </Button>
+                </form>
+                <form
+                  onSubmit={handleGetOrders}
+                  toolname="apiTestGetOrders"
+                  tooldescription="Retrieves the current user's orders."
+                  toolautosubmit="true"
+                >
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Get Orders
+                  </Button>
+                </form>
               </div>
             </CardContent>
           </Card>
@@ -308,12 +501,26 @@ export function ApiTesting({ onPageChange }: ApiTestingProps) {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
-                <Button onClick={testAdminStats} disabled={loading} variant="outline">
-                  Admin Stats
-                </Button>
-                <Button onClick={testAdminOrders} disabled={loading} variant="outline">
-                  Admin Orders
-                </Button>
+                <form
+                  onSubmit={handleAdminStats}
+                  toolname="apiTestAdminStats"
+                  tooldescription="Retrieves admin dashboard statistics."
+                  toolautosubmit="true"
+                >
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Admin Stats
+                  </Button>
+                </form>
+                <form
+                  onSubmit={handleAdminOrders}
+                  toolname="apiTestAdminOrders"
+                  tooldescription="Retrieves all orders across all users (admin only)."
+                  toolautosubmit="true"
+                >
+                  <Button type="submit" disabled={loading} variant="outline" className="w-full">
+                    Admin Orders
+                  </Button>
+                </form>
               </div>
             </CardContent>
           </Card>
@@ -327,14 +534,20 @@ export function ApiTesting({ onPageChange }: ApiTestingProps) {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button 
-                onClick={testResetData} 
-                disabled={loading} 
-                variant="destructive" 
-                className="w-full"
+              <form
+                onSubmit={handleResetData}
+                toolname="apiTestResetData"
+                tooldescription="Destructively resets all application data to its initial state. Use with caution."
               >
-                Reset All Data
-              </Button>
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  variant="destructive"
+                  className="w-full"
+                >
+                  Reset All Data
+                </Button>
+              </form>
             </CardContent>
           </Card>
         </div>

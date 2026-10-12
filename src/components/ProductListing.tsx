@@ -56,8 +56,14 @@ export function ProductListing({ searchQuery, onProductSelect }: ProductListingP
     return filtered;
   }, [selectedCategory, activeSearchQuery, sortBy]);
 
-  const handleLocalSearch = (e: React.FormEvent) => {
+  const handleLocalSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const nativeEvent = e.nativeEvent as SubmitEvent;
+    if (nativeEvent.agentInvoked && typeof nativeEvent.respondWith === 'function') {
+      nativeEvent.respondWith(
+        Promise.resolve({ query: localSearchQuery, resultCount: filteredProducts.length })
+      );
+    }
   };
 
   return (
@@ -74,14 +80,22 @@ export function ProductListing({ searchQuery, onProductSelect }: ProductListingP
       <div className="bg-card rounded-lg border p-6 mb-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {/* Search */}
-          <form onSubmit={handleLocalSearch} className="md:col-span-2">
+          <form
+            onSubmit={handleLocalSearch}
+            className="md:col-span-2"
+            toolname="filterProductsBySearch"
+            tooldescription="Filters the visible product list by a search keyword."
+            toolautosubmit="true"
+          >
             <div className="relative">
               <Input
                 type="text"
+                name="query"
                 placeholder="Search products..."
                 value={localSearchQuery}
                 onChange={(e) => setLocalSearchQuery(e.target.value)}
                 className="pl-10"
+                toolparamdescription="Keyword to filter products by name, description, or category."
               />
               <MagnifyingGlass className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
             </div>

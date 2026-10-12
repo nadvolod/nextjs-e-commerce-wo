@@ -33,3 +33,5 @@ packages
 .spark-workbench-id
 test-results/
 playwright-report/
+.mcp.json
+.playwright-mcp
